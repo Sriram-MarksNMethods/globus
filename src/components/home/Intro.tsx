@@ -20,8 +20,7 @@ export function Intro({ content: intro }: { content: IntroContent }) {
     <section ref={sectionRef} className="relative h-[200vh]">
       <motion.div style={{ opacity: fade }} className="sticky top-0 h-screen overflow-hidden bg-[#e2e2e2]">
         <motion.div style={{ y: drift }} className="absolute -inset-y-[5%] inset-x-0">
-          {/* On phones the towers sit wider than the screen, so show the left tower and the gap. */}
-          <LoopVideo name="/brand/hero-towers" className="size-full object-[30%_50%] md:object-center" />
+          <LoopVideo name="/brand/hero-towers" className="size-full" />
         </motion.div>
 
         <p className="text-h2 absolute inset-x-0 top-[80px] text-center md:top-5">

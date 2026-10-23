@@ -14,6 +14,7 @@ import type {
 export const site = {
   project: "Neo",
   developer: "Globus Developers",
+  url: "https://www.globusdevelopers.com", // live domain, used for the sitemap and share links
   phone: "+91 95 1978 1978",
   email: "info@globusdevelopers.com",
   rera: "TG RERA P02400010006",
@@ -31,11 +32,13 @@ export const nav = {
   secondary: [
     { label: "Construction progress", href: "/progress" },
     { label: "News and insights", href: "/news" },
-    { label: "Contact", href: "tel:+919519781978" },
+    { label: "Careers", href: "/career" },
+    { label: "Partner with us", href: "/partner-with-us" },
+    { label: "Contact", href: "/contact" },
   ],
   tiles: [
     { label: "Choose a home", href: "/homes" },
-    { label: "Book a site visit", href: `tel:+919519781978` },
+    { label: "Book a site visit", href: "/contact" },
   ],
 };
 

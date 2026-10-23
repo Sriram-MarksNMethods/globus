@@ -3,6 +3,7 @@ import { Onest } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Preloader } from "@/components/layout/Preloader";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { site } from "@/content/home";
 import "./globals.css";
 
 const onest = Onest({
@@ -12,6 +13,8 @@ const onest = Onest({
 });
 
 export const metadata: Metadata = {
+  // The live address, so share images and links point to the real site.
+  metadataBase: new URL(site.url),
   title: "Neo by Globus Developers | 3 & 4 BHK Residences in Neopolis, Kokapet",
   description:
     "Neo by Globus Developers: two towers of 58+ floors in Neopolis, Kokapet, with 3 and 4 BHK homes from 2,235 to 4,565 sft. TG RERA P02400010006.",

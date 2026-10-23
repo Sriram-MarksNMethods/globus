@@ -19,6 +19,9 @@ export function Footer({ breadcrumb }: { breadcrumb?: string }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/brand/globus-logo-light.svg" alt="Globus Developers" className="h-[90px] w-auto self-start md:h-[150px]" />
         <p className="text-small text-grey md:mb-[18px]">{footer.copyright}</p>
+        <Link href="/privacy-policy" className="text-small text-grey hover:text-white md:mb-[18px]">
+          Privacy policy
+        </Link>
         <Link
           href={footer.credit.href}
           target="_blank"

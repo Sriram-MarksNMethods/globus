@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Menu } from "./Menu";
 
 /*
-  Fixed header: menu button + favourites on the left, main CTA on the right.
+  Fixed header: menu button on the left, main CTA on the right.
   It turns white-on-black while a section marked data-theme="dark" sits under it.
 */
 export function Header() {
@@ -46,19 +46,10 @@ export function Header() {
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
-          <button
-            type="button"
-            aria-label="Favourites"
-            className={`flex size-[30px] items-center justify-center rounded-[5px] transition-colors duration-[600ms] ${
-              dark ? "bg-white/15 text-white" : "bg-chip text-black"
-            }`}
-          >
-            <HeartIcon />
-          </button>
         </div>
 
         {/* Globus logo: dark on light sections, white on dark ones */}
-        <Link href="/" aria-label="Globus Developers, home" className="pointer-events-auto absolute top-[15px] left-[135px] md:left-[calc(2*20px+2*(100vw-220px)/12)]">
+        <Link href="/" aria-label="Globus Developers, home" className="pointer-events-auto absolute top-[15px] left-[100px] md:left-[calc(2*20px+2*(100vw-220px)/12)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={dark ? "/brand/globus-logo-light.svg" : "/brand/globus-logo-dark.svg"}
@@ -101,15 +92,3 @@ function CloseIcon() {
   );
 }
 
-function HeartIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-      <path
-        d="M10 17s-6.5-4-6.5-8.6A3.6 3.6 0 0 1 10 6.2a3.6 3.6 0 0 1 6.5 2.2C16.5 13 10 17 10 17z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-        fill="none"
-      />
-    </svg>
-  );
-}
