@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Design tokens. Everything else is Tailwind utilities inside the components.
+  Sizes are measured from the reference at 1440px wide.
+*/
+@theme {
+  --font-sans: var(--font-onest), "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --color-ink: #000000;
+  --color-grey: #8d8d8d; /* small uppercase body text */
+  --color-soft: #f2f2f2; /* cards, menu panel */
+  --color-chip: #e9e9e9; /* secondary buttons */
+  --color-plum: #351530; /* Globus logo */
+  --color-orange: #f04e37; /* Globus logo */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+  The four text styles used across the site.
+  Fluid between breakpoints, exactly like the reference:
+  390px → 1024px → 1440px → 1920px.
+*/
+@utility text-h1 {
+  font-size: 42px;
+  line-height: 45px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 400;
+  @media (width >= 768px) {
+    font-size: calc(71 / 1440 * 100vw);
+    line-height: 0.986;
+    letter-spacing: -0.04em;
+  }
+  @media (width >= 1440px) {
+    font-size: calc(71px + (100vw - 1440px) * 28 / 480);
+    line-height: 0.92;
   }
 }
 
+@utility text-h2 {
+  font-size: 21px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  font-weight: 400;
+  @media (width >= 768px) {
+    font-size: calc(28 / 1440 * 100vw);
+    line-height: 1.07;
+    letter-spacing: -0.02em;
+  }
+  @media (width >= 1440px) {
+    font-size: calc(28px + (100vw - 1440px) * 9 / 480);
+  }
+}
+
+@utility text-body {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  @media (width >= 768px) {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  @media (width >= 1280px) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+@utility text-small {
+  font-size: 10px;
+  line-height: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  @media (width >= 768px) {
+    font-size: 9px;
+    line-height: 12px;
+  }
+  @media (width >= 1280px) {
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0;
+  }
+}
+
+/* Lenis smooth scroll (from the Lenis docs). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html {
+  overflow-x: clip;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
 }

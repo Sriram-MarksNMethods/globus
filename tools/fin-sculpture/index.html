@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>html,body{margin:0;background:#fff}canvas{display:block}</style>
+<script type="importmap">
+{ "imports": { "three": "./three/build/three.module.js" } }
+</script>
+</head>
+<body>
+<script type="module">
+// Offline renderer for the Globus fin sculpture. window.renderFrame(phase) draws one frame.
+// ?tone=light|dark  ?size=1200
+import * as THREE from "three";
+import { RoundedBoxGeometry } from "./three/jsm/geometries/RoundedBoxGeometry.js";
+import { RoomEnvironment } from "./three/jsm/environments/RoomEnvironment.js";
+
+const params = new URLSearchParams(location.search);
+const tone = params.get("tone") || "light";
+const size = +(params.get("size") || 1200);
+const dark = tone === "dark";
+document.body.style.background = dark ? "#000" : "#fff";
+
+const FIN_COUNT = 96;
+const HEIGHT = 680;
+const TURN = Math.PI * 1.35;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(2);
+renderer.setSize(size, size);
+renderer.setClearColor(dark ? 0x000000 : 0xffffff, 1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = dark ? 1.0 : 1.35;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = dark ? 0.16 : 0.22;
+
+const camera = new THREE.PerspectiveCamera(26, 1, 1, 5000);
+camera.position.set(-140, 360, 1750);
+camera.lookAt(0, -10, 0);
+
+const key = new THREE.DirectionalLight(0xffffff, dark ? 2.6 : 3.2);
+key.position.set(-220, 820, 620);
+key.castShadow = true;
+key.shadow.mapSize.set(4096, 4096);
+Object.assign(key.shadow.camera, { left: -420, right: 420, top: 420, bottom: -420, near: 1, far: 2500 });
+key.shadow.radius = 8;
+key.shadow.blurSamples = 16;
+key.shadow.bias = -0.0003;
+scene.add(key);
+const rim = new THREE.DirectionalLight(0xffffff, dark ? 0.7 : 0.35);
+rim.position.set(400, -200, -300);
+scene.add(rim);
+
+const geometry = new RoundedBoxGeometry(320, 5, 66, 3, 2.2);
+const material = new THREE.MeshStandardMaterial({ color: dark ? 0x6a6a6a : 0xffffff, roughness: 0.5, metalness: 0 });
+const fins = new THREE.InstancedMesh(geometry, material, FIN_COUNT);
+fins.castShadow = true;
+fins.receiveShadow = true;
+scene.add(fins);
+
+// Curving spine: a soft S that leans across the frame.
+const spine = (t) => new THREE.Vector3(Math.sin(t * Math.PI * 1.2 - 0.4) * 95, (t - 0.5) * HEIGHT, Math.cos(t * Math.PI) * 50);
+const matrix = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), s = new THREE.Vector3();
+
+// phase 0..1 → every fin turns half a turn in place (a fin looks the same after 180°, so the loop is seamless).
+window.renderFrame = (phase) => {
+  for (let i = 0; i < FIN_COUNT; i++) {
+    const t = i / (FIN_COUNT - 1);
+    q.setFromAxisAngle(up, t * TURN + phase * Math.PI);
+    s.set(0.62 + Math.sin(t * Math.PI) * 0.38, 1, 1);
+    matrix.compose(spine(t), q, s);
+    fins.setMatrixAt(i, matrix);
+  }
+  fins.instanceMatrix.needsUpdate = true;
+  renderer.render(scene, camera);
+};
+window.renderFrame(0);
+window.ready = true;
+</script>
+</body>
+</html>
