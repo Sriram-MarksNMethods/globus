@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
 import type { FormatContent } from "@/content/types";
-import { FinRibbon } from "@/components/brand/FinRibbon";
 import { SplitHeading } from "@/components/ui/SplitHeading";
 import { BlurReveal } from "@/components/ui/BlurReveal";
 import { useViewport } from "@/components/ui/useViewport";
@@ -85,15 +84,13 @@ export function Format({ content: format }: { content: FormatContent }) {
           </motion.div>
         </div>
 
-        {/* Pinned G with two facts */}
+        {/* Pinned two facts */}
         <div ref={factsRef} className="relative -mt-[22vw] h-[260vh]">
           <div
             onPointerMove={followPointer}
             onPointerLeave={returnToCentre}
             className="sticky top-0 flex h-screen items-center justify-center overflow-hidden [@media(pointer:fine)]:cursor-none"
           >
-            {/* The sculpture only moves inside its own video; the section itself stays still. */}
-            <FinRibbon className="absolute h-[120vh] w-[120vh]" />
 
             <div className="relative grid w-full grid-cols-1 px-5 md:grid-cols-12 md:gap-5">
               <div className="relative md:col-span-4 md:col-start-7">

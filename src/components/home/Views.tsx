@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, MotionValue, useScroll, useTransform } from "motion/react";
 import type { ViewsContent } from "@/content/types";
-import { FinRibbon } from "@/components/brand/FinRibbon";
 
 /*
   White section: lead text → a row of photos turning in 3D as you scroll → note.
@@ -24,7 +23,6 @@ export function Views({ content: views }: { content: ViewsContent }) {
       </div>
 
       <div ref={rowRef} className="relative mt-[80px] h-[60vw] [perspective:1400px] md:mt-[120px] md:h-[34vw]">
-        <FinRibbon className="absolute top-1/2 left-[2vw] aspect-square h-[170%] -translate-y-1/2" />
         {views.images.map((image, index) => (
           <ViewCard key={image.src} index={index} position={position} src={image.src} alt={image.alt} />
         ))}

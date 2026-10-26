@@ -3,7 +3,6 @@
 import Image from "next/image";
 import type { LocationContent } from "@/content/types";
 import { Button } from "@/components/ui/Button";
-import { FinRibbon } from "@/components/brand/FinRibbon";
 
 /*
   Black section: headline → text + photo → four travel-time tiles → dark map.
@@ -36,9 +35,8 @@ export function Location({ content: location }: { content: LocationContent }) {
         </div>
       </div>
 
-      {/* Travel-time tiles over a dark G */}
+      {/* Travel-time tiles */}
       <div className="relative mt-[160px] md:mt-[320px]">
-        <FinRibbon tone="dark" className="absolute top-1/2 left-1/2 aspect-square h-[160%] -translate-x-1/2 -translate-y-1/2" />
         <ul className="relative grid grid-cols-2 gap-5 px-5 md:grid-cols-4">
           {location.times.map((time) => (
             <li
