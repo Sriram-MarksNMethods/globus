@@ -11,12 +11,12 @@ import type { PeopleContent } from "@/content/types";
 export function People({ content: people }: { content: PeopleContent }) {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
-  const photoY = useTransform(scrollYProgress, [0, 1], ["-40vh", "40vh"]);
+  const photoY = useTransform(scrollYProgress, [0, 1], ["-15vh", "15vh"]);
 
   return (
     <section ref={sectionRef} data-theme="dark" className="relative z-10 h-[105vh] overflow-hidden bg-black text-white">
-      <motion.div style={{ y: photoY }} className="absolute inset-x-0 -top-[40vh] h-[calc(100%+80vh)]">
-        <Image src={people.image.src} alt={people.image.alt} fill sizes="100vw" className="object-cover" />
+      <motion.div style={{ y: photoY }} className="absolute inset-x-0 -top-[15vh] h-[calc(100%+30vh)]">
+        <Image src={people.image.src} alt={people.image.alt} fill sizes="100vw" quality={90} className="object-cover" />
       </motion.div>
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
 

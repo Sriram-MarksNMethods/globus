@@ -1,21 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRef, useState } from "react";
 import { motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { about } from "@/content/pages";
-import { projects } from "@/content/projects";
 import { FinRibbon } from "@/components/brand/FinRibbon";
 import { BlurReveal } from "@/components/ui/BlurReveal";
-import { PlusIcon } from "@/components/ui/Button";
-import { SplitHeading } from "@/components/ui/SplitHeading";
 
 /* ------------------------------------------------------------------ Hero */
 /* Headline split to both edges over the fin sculpture, small label in between. */
 export function AboutHero() {
   return (
-    <section className="relative h-screen overflow-hidden bg-white">
+    <section className="relative h-svh overflow-hidden bg-white">
       <FinRibbon className="absolute top-1/2 left-1/2 h-[115vh] w-[115vh] -translate-x-1/2 -translate-y-1/2" />
       <h1 className="text-h1 absolute inset-x-5 top-1/2 flex -translate-y-1/2 flex-col md:flex-row md:justify-between">
         <span>{about.heading[0]}</span>
@@ -49,7 +45,7 @@ export function Philosophy() {
 
   return (
     <section ref={pinRef} data-theme="dark" className="relative h-[320vh] bg-black text-white">
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-svh overflow-hidden">
         {pillars.map((pillar, index) => (
           <motion.div
             key={pillar.name}
@@ -68,7 +64,7 @@ export function Philosophy() {
           {about.philosophy.caption[1]}
         </p>
 
-        <div className="absolute top-[103px] right-5 bottom-5 hidden w-[453px] flex-col rounded-[5px] bg-[rgba(141,141,141,0.55)] p-5 backdrop-blur-[20px] md:flex">
+        <div className="absolute top-[103px] right-5 bottom-5 hidden w-[453px] flex-col rounded-[5px] bg-[rgba(80,80,80,0.85)] p-5 md:flex">
           <div className="flex gap-5">
             {pillars.map((pillar, index) => (
               <Bar key={pillar.name} index={index} count={pillars.length} progress={scrollYProgress} />
@@ -147,32 +143,3 @@ export function Numbers() {
   );
 }
 
-/* ------------------------------------------------------------------ Landmarks */
-/* Split headline, then project tiles staggered across the grid (like a team wall). */
-export function Landmarks() {
-  // Stagger: every other tile starts lower.
-  return (
-    <section className="bg-white pt-[120px] pb-[160px] md:pt-[240px]">
-      <SplitHeading parts={about.landmarks.heading} />
-      <p className="text-body mx-auto mt-5 max-w-[340px] px-5 text-center text-grey">{about.landmarks.text}</p>
-      <ul className="mt-[80px] grid grid-cols-2 gap-5 px-5 md:grid-cols-6">
-        {projects.map((project, index) => (
-          <li key={project.slug} className={`md:col-span-2 ${index % 2 === 1 ? "md:mt-[120px]" : ""}`}>
-            <Link href={`/projects/${project.slug}`} className="group flex aspect-[453/360] flex-col justify-between rounded-[5px] bg-soft p-5 transition-colors duration-500 hover:bg-chip">
-              <div>
-                <p className="text-small">{project.name}</p>
-                <p className="text-small mt-1 text-grey">
-                  {project.area} · {project.status}
-                </p>
-              </div>
-              <p className="text-h2">{project.tagline}</p>
-              <span className="flex size-[30px] items-center justify-center self-end rounded-[5px] bg-white">
-                <PlusIcon />
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}

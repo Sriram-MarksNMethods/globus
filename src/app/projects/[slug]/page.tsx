@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { findProject, projects } from "@/content/projects";
-import { Intro } from "@/components/home/Intro";
-import { Tower } from "@/components/home/Tower";
-import { Format } from "@/components/home/Format";
-import { Crown } from "@/components/home/Crown";
-import { Location } from "@/components/home/Location";
-import { People } from "@/components/home/People";
-import { Views } from "@/components/home/Views";
-import { Homes } from "@/components/home/Homes";
-import { Choose } from "@/components/home/Choose";
+import {
+  Amenities, Enquire, Highlights, KeyFacts, MoreProjects, Overview, ProjectHero, ProjectLocation,
+} from "@/components/project/ProjectSections";
+import { Gallery } from "@/components/project/Gallery";
+import { PlanViewer } from "@/components/project/PlanViewer";
+import { ScrollSequence } from "@/components/project/ScrollSequence";
 import { UpcomingProjectPage } from "@/components/projects/UpcomingProjectPage";
 import { Footer } from "@/components/layout/Footer";
 
@@ -30,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/* A project page: the same sections as the homepage, filled with this project's content. */
+/* A project page: a buyer's page with its own sections (not the homepage's), filled with this project's content. */
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = findProject(slug);
@@ -45,19 +42,20 @@ export default async function ProjectPage({ params }: Props) {
     );
   }
 
-  const { sections } = project;
   return (
     <main>
-      <Intro content={sections.intro} />
-      <Tower content={sections.tower} />
-      <Format content={sections.format} />
-      <Crown content={sections.crown} />
-      <Location content={sections.location} />
-      <People content={sections.people} />
-      <Views content={sections.views} />
-      <Homes content={sections.homes} />
-      <Choose content={sections.choose} />
-      <Footer />
+      <ProjectHero project={project} />
+      <KeyFacts project={project} />
+      <Overview project={project} />
+      {project.sequence && <ScrollSequence folder={project.sequence.folder} frames={project.sequence.frames} />}
+      <Highlights project={project} />
+      <Gallery content={project.sections.views} />
+      <Amenities project={project} />
+      <PlanViewer content={project.sections.homes} />
+      <ProjectLocation project={project} />
+      <Enquire project={project} />
+      <MoreProjects project={project} />
+      <Footer breadcrumb={project.name} />
     </main>
   );
 }

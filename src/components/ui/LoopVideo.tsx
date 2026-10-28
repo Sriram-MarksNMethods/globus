@@ -9,13 +9,31 @@ import { useEffect, useRef } from "react";
 
   Upright screens (phones) get a smaller portrait cut of the same clip:
   hero-towers-portrait.webm / .mp4. It is sharper on a phone and a fraction of the download.
+
+  It only plays while it is on screen (a playing video costs CPU even when nobody sees it).
+  `eager`: start downloading straight away (the first screen's video). Otherwise the
+  download waits until the video is about to scroll into view.
 */
-export function LoopVideo({ name, className = "" }: { name: string; className?: string }) {
+export function LoopVideo({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // "Reduce motion": keep the first frame still instead of playing the loop.
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) videoRef.current?.pause();
+    const video = videoRef.current;
+    if (!video) return;
+
+    // "Reduce motion": keep the poster still instead of playing the loop.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const visibility = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      // Start a little before it comes into view, so it is already moving when it appears.
+      { rootMargin: "50% 0px" },
+    );
+    visibility.observe(video);
+    return () => visibility.disconnect();
   }, []);
 
   return (
@@ -24,8 +42,7 @@ export function LoopVideo({ name, className = "" }: { name: string; className?: 
       muted
       loop
       playsInline
-      autoPlay
-      preload="auto"
+      preload={eager ? "auto" : "none"}
       poster={`${name}-poster.webp`}
       aria-hidden="true"
       className={`pointer-events-none object-cover ${className}`}

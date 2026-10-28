@@ -48,7 +48,7 @@ function ViewCard({ index, position, src, alt }: CardProps) {
       style={{ x, rotateY, z, opacity }}
       className="absolute top-0 left-1/2 aspect-[670/450] h-full overflow-hidden rounded-[5px]"
     >
-      <Image src={src} alt={alt} fill sizes="50vw" className="object-cover" />
+      <Image src={src} alt={alt} fill sizes="(min-width: 768px) 51vw, 90vw" className="object-cover" />
     </motion.div>
   );
 }

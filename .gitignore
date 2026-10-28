@@ -43,3 +43,7 @@ next-env.d.ts
 # rendered sculpture frames (large, regenerate with tools/fin-sculpture)
 /tools/fin-sculpture/frames-*/
 /tools/fin-sculpture/render.log
+
+# local audit + render logs
+.roast/
+tools/**/*.log

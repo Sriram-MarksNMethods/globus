@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   reactCompiler: true,
+  // 90 is used for full-screen photos (sharper on big screens); everything else stays at the default 75.
+  images: { qualities: [75, 90] },
   // Old globusdevelopers.com addresses → their pages on this site, so links and Google results keep working.
   async redirects() {
     return [

@@ -4,6 +4,9 @@ Globus fin sculpture, rendered in Blender (Cycles) for a soft, photo-real look.
 Run headless:
   still:  blender -b -P blender_fins.py -- --still 0.15 --out ./still.png
   loop:   blender -b -P blender_fins.py -- --frames 384 --out ./frames/
+  add --distance 13 to pull the camera back so the whole ribbon fits in the frame
+  (default 5.3 = the close-up where the fins run off the edges)
+  add --slim (with --fin-length / --turn) for the thin ribbon used in "Choose your home"
 
 The loop: every fin turns half a turn in place over the frames. A fin looks the same after
 half a turn, so the last frame flows straight back into the first (seamless).
@@ -23,6 +26,7 @@ FIN_COUNT = 64           # fins from bottom to top
 HEIGHT = 7.0             # metres, bottom to top
 TURN = math.pi * 1.4     # how far the top fin is turned compared to the bottom one
 FIN_LENGTH = 3.0
+SWELL_BASE = 0.62        # length of the end fins compared to the middle ones
 FIN_THICKNESS = 0.075
 FIN_DEPTH = 0.9
 SIZE = 1080              # output is SIZE x SIZE pixels
@@ -47,11 +51,11 @@ def spine(t):
 
 def fin_scale(t):
     """Fins are longer in the middle and shorter at the ends."""
-    return 0.62 + math.sin(t * math.pi) * 0.38
+    return SWELL_BASE + math.sin(t * math.pi) * (1 - SWELL_BASE)
 
 
 # ---------------------------------------------------------------- scene
-def build_scene():
+def build_scene(distance=5.3):
     bpy.ops.wm.read_factory_settings(use_empty=True)
     scene = bpy.context.scene
 
@@ -132,7 +136,7 @@ def build_scene():
     camera_data = bpy.data.cameras.new("Camera")
     camera_data.lens = 50
     camera = bpy.data.objects.new("Camera", camera_data)
-    camera.location = (-0.3, -5.3, -0.6)
+    camera.location = (-0.3 * distance / 5.3, -distance, -0.6 * distance / 5.3)
     scene.collection.objects.link(camera)
     scene.camera = camera
     target = bpy.data.objects.new("Target", None)
@@ -165,9 +169,19 @@ def main():
     parser.add_argument("--start", type=int, default=0)
     parser.add_argument("--out", required=True)
     parser.add_argument("--samples", type=int, default=SAMPLES)
+    parser.add_argument("--distance", type=float, default=5.3)
+    # Slim ribbon (homepage "Choose your home"): narrower, taller, more fins, optional extra twist.
+    parser.add_argument("--slim", action="store_true")
+    parser.add_argument("--fin-length", type=float, default=1.5)
+    parser.add_argument("--turn", type=float, default=1.4, help="top fin's turn, in half turns (x pi)")
     args = parser.parse_args(argv)
 
-    scene, fins = build_scene()
+    if args.slim:
+        global FIN_COUNT, HEIGHT, TURN, FIN_LENGTH, SWELL_BASE
+        FIN_COUNT, HEIGHT, FIN_LENGTH, SWELL_BASE = 90, 8.5, args.fin_length, 0.85
+        TURN = math.pi * args.turn
+
+    scene, fins = build_scene(args.distance)
     scene.cycles.samples = args.samples
 
     if args.still is not None:

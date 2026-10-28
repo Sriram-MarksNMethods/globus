@@ -31,10 +31,10 @@ export async function sendLead(_previous: LeadState, formData: FormData): Promis
   // Spam trap: real visitors never see or fill the "website" field.
   if (formData.get("website")) return { status: "sent", message: "Thank you. We'll be in touch shortly." };
 
-  // Collect every text field, trimmed.
+  // Collect every text field, trimmed (and capped, so nobody can push huge payloads to the CRM).
   const lead: Record<string, string> = {};
   for (const [key, value] of formData.entries()) {
-    if (typeof value === "string" && key !== "website" && !key.startsWith("$")) lead[key] = value.trim();
+    if (typeof value === "string" && key !== "website" && !key.startsWith("$")) lead[key] = value.trim().slice(0, 2000);
   }
 
   const missing = required.filter((field) => !lead[field]);

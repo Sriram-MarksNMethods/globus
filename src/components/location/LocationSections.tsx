@@ -9,7 +9,7 @@ import { locationPage } from "@/content/pages";
 /* Full-screen city photo with the headline across the top, small label in between. */
 export function LocationHero() {
   return (
-    <section data-theme="dark" className="relative h-screen overflow-hidden bg-black text-white">
+    <section data-theme="dark" className="relative h-svh overflow-hidden bg-black text-white">
       <Image src={locationPage.hero.src} alt={locationPage.hero.alt} fill priority sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />
       <h1 className="text-h1 absolute inset-x-5 top-[110px] flex flex-col md:top-[160px] md:flex-row md:justify-between">
@@ -105,8 +105,8 @@ export function TravelTimes() {
         {area.times.map((time) => (
           <motion.li
             key={`${area.name}-${time.place}`}
-            initial={{ opacity: 0, filter: "blur(8px)" }}
-            animate={{ opacity: 1, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="flex aspect-[335/300] flex-col justify-between rounded-[5px] bg-[#151515] p-5"
           >

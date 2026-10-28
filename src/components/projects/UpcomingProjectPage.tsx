@@ -10,7 +10,7 @@ import { SplitHeading } from "@/components/ui/SplitHeading";
 export function UpcomingProjectPage({ project }: { project: UpcomingProject }) {
   return (
     <>
-      <section data-theme="dark" className="relative h-screen overflow-hidden bg-black text-white">
+      <section data-theme="dark" className="relative h-svh overflow-hidden bg-black text-white">
         <Image src={project.hero.src} alt={project.hero.alt} fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute inset-x-5 bottom-5 flex flex-col gap-3 md:flex-row md:items-end">

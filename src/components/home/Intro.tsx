@@ -6,22 +6,20 @@ import type { IntroContent } from "@/content/types";
 import { LoopVideo } from "@/components/ui/LoopVideo";
 
 /*
-  Hero: a full-screen loop of two slowly twisting fin towers (silver),
+  Hero: a full-screen loop of two slowly twisting fin towers,
   a two-line title at the top and the headline in the open space between the towers.
-  The tower photo (next section) slides up over it during the first screen of scrolling.
+  It holds still for half a screen while "A legacy of landmarks" slides up over it
+  (Format.tsx starts 50svh early), darkening slightly as it is covered.
 */
 export function Intro({ content: intro }: { content: IntroContent }) {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
-  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const drift = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
+  const shade = useTransform(scrollYProgress, [0, 1], [0, 0.45]);
 
   return (
-    <section ref={sectionRef} className="relative h-[200vh]">
-      <motion.div style={{ opacity: fade }} className="sticky top-0 h-screen overflow-hidden bg-[#e2e2e2]">
-        <motion.div style={{ y: drift }} className="absolute -inset-y-[5%] inset-x-0">
-          <LoopVideo name="/brand/hero-towers" className="size-full" />
-        </motion.div>
+    <section ref={sectionRef} className="relative h-[150svh]">
+      <div className="sticky top-0 h-svh overflow-hidden bg-[#e2e2e2]">
+        <LoopVideo name="/brand/hero-towers" eager className="size-full" />
 
         <p className="text-h2 absolute inset-x-0 top-[80px] text-center md:top-5">
           {intro.title[0]}
@@ -43,7 +41,7 @@ export function Intro({ content: intro }: { content: IntroContent }) {
         </p>
 
         <a
-          href="#about"
+          href="#landmarks"
           aria-label="Scroll down"
           className="absolute right-5 bottom-5 flex size-[30px] items-center justify-center rounded-[5px] bg-white/80"
         >
@@ -51,7 +49,10 @@ export function Intro({ content: intro }: { content: IntroContent }) {
             <path d="M6 0v13M1 8l5 5 5-5" stroke="currentColor" strokeWidth="1.2" fill="none" />
           </svg>
         </a>
-      </motion.div>
+
+        {/* Shade while the next section covers the hero */}
+        <motion.div aria-hidden="true" style={{ opacity: shade }} className="pointer-events-none absolute inset-0 bg-black" />
+      </div>
     </section>
   );
 }

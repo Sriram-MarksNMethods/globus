@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AboutHero, Landmarks, Numbers, Philosophy, Story } from "@/components/about/AboutSections";
+import { AboutHero, Numbers, Philosophy, Story } from "@/components/about/AboutSections";
 import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Globus Developers crafts luxury real estate across Hyderabad’s prime growth corridors, guided by vision, precision and legacy.",
 };
 
-/* About the developer: hero → philosophy → story → numbers → landmarks. */
+/* About the developer: hero → philosophy → story → numbers. (The projects are on the homepage and /projects.) */
 export default function AboutPage() {
   return (
     <main>
@@ -15,7 +15,6 @@ export default function AboutPage() {
       <Philosophy />
       <Story />
       <Numbers />
-      <Landmarks />
       <Footer breadcrumb="About Globus" />
     </main>
   );

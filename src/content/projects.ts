@@ -1,15 +1,15 @@
 /*
   Every Globus project, one object each.
-  - Ongoing projects get a full page built from the same sections as the homepage.
+  - Ongoing projects get a full page (see components/project/ProjectSections.tsx).
   - Upcoming projects get a short page (hero, intro, register interest).
 
   Facts and long descriptions come from globusdevelopers.com.
   Lines marked DRAFT are written for this layout — confirm with the client.
 */
 
-import * as neo from "./home";
+import * as neo from "./neo";
 import type {
-  ChooseContent, CrownContent, FormatContent, HomesContent, IntroContent,
+  CrownContent, FormatContent, HomesContent, IntroContent,
   LocationContent, PeopleContent, TowerContent, ViewsContent,
 } from "./types";
 
@@ -27,6 +27,9 @@ type ProjectBase = {
 
 export type FullProject = ProjectBase & {
   kind: "full";
+  facts: { value: string; label: string }[]; // the key numbers under the hero
+  // Optional camera move that plays as you scroll (frames from tools/scroll-sequence/extract.sh).
+  sequence?: { folder: string; frames: number };
   sections: {
     intro: IntroContent;
     tower: TowerContent;
@@ -36,7 +39,6 @@ export type FullProject = ProjectBase & {
     people: PeopleContent;
     views: ViewsContent;
     homes: HomesContent;
-    choose: ChooseContent;
   };
 };
 
@@ -49,14 +51,6 @@ export type UpcomingProject = ProjectBase & {
 
 export type Project = FullProject | UpcomingProject;
 
-const chooseHome = (projectName: string): ChooseContent => ({
-  heading: ["Choose", "your home"],
-  buttons: [
-    { label: "See the plans", href: "#plans", dark: true },
-    { label: `Enquire about ${projectName}`, href: "tel:+919519781978", dark: false },
-  ],
-});
-
 export const projects: Project[] = [
   // ---------------------------------------------------------------- Neo
   {
@@ -68,13 +62,24 @@ export const projects: Project[] = [
     tagline: "3 & 4 BHK Apartments",
     rera: "P02400010006",
     card: { src: "/neo/tower-dusk.webp", alt: "Neo at dusk" },
+    facts: [
+      { value: "2", label: "Towers" },
+      { value: "58+", label: "Floors" },
+      { value: "3 & 4", label: "BHK" },
+      { value: "2,235–4,565", label: "Sft" },
+      { value: "11 ft", label: "Ceilings" },
+    ],
     sections: {
-      intro: { title: ["Neo", "Neopolis, Kokapet"], heading: ["Neopolis’", "emerging landmark"], label: neo.intro.label },
+      intro: { title: ["Neo", "Neopolis, Kokapet"], heading: ["Neopolis’", "emerging landmark"], label: ["3 & 4 BHK", "residences", "Kokapet"] },
       tower: neo.tower,
       format: neo.format,
       crown: neo.crown,
       location: neo.location,
-      people: { ...neo.people, image: { src: "/neo/aerial-decks.webp", alt: "Aerial view of the decks on Neo" }, label: "Neo by Globus" },
+      people: {
+        image: { src: "/neo/towers-night-road.webp", alt: "Neo towers beside the road at night" },
+        label: "Neo by Globus",
+        heading: ["Life at", "the crown"], // DRAFT
+      },
       views: {
         lead: "Two slender towers with wide balconies, green terraces and glass on every side, so the city stays in view from every home.", // DRAFT
         images: [
@@ -82,12 +87,11 @@ export const projects: Project[] = [
           { src: "/neo/facade-front.webp", alt: "Front elevation" },
           { src: "/neo/towers-night-road.webp", alt: "Neo at night" },
           { src: "/neo/crown-decks.webp", alt: "Crown decks" },
-          { src: "/neo/aerial-lake.webp", alt: "Aerial view" },
+          { src: "/neo/aerial-lake-4k.webp", alt: "Aerial view" },
         ],
         text: "Views of Neo from every side, from the street to the sky decks, as rendered for Globus Developers.", // DRAFT
       },
       homes: neo.homes,
-      choose: chooseHome("Neo"),
     },
   },
 
@@ -101,6 +105,13 @@ export const projects: Project[] = [
     tagline: "3 & 4 BHK Apartments",
     rera: "P02400008439",
     card: { src: "/projects/altus/in-balcony.webp", alt: "Balcony at Altus with a glass railing over the city" },
+    sequence: { folder: "/projects/altus/sequence", frames: 137 },
+    facts: [
+      { value: "2", label: "Blocks" },
+      { value: "3 & 4", label: "BHK" },
+      { value: "1,760–4,685", label: "Sft" },
+      { value: "50,800", label: "Sq. ft. clubhouse" },
+    ],
     sections: {
       intro: {
         title: ["Altus", "Kondapur"],
@@ -108,7 +119,7 @@ export const projects: Project[] = [
         label: ["3 & 4 BHK", "residences", "Kondapur"],
       },
       tower: {
-        image: { src: "/projects/altus/hero.jpg", alt: "Altus towers at dusk" },
+        image: { src: "/projects/altus/towers-dusk.webp", alt: "Altus towers at dusk" },
         heading: ["A new horizon", "over Kondapur"],
         intro: "A new horizon over Kondapur. Rising above the city’s most dynamic corridor.",
         lead: "Block A and Block B rise over the green, low-rise streets of Kondapur, with homes from 1,760 to 4,685 sft and deep balconies on every floor.",
@@ -180,7 +191,6 @@ export const projects: Project[] = [
         ],
         button: { label: "Enquire", href: "tel:+919519781978" },
       },
-      choose: chooseHome("Altus"),
     },
   },
 
@@ -194,6 +204,13 @@ export const projects: Project[] = [
     tagline: "3 & 4 BHK Apartments",
     rera: "P02400003226",
     card: { src: "/projects/treasor/in-balcony.webp", alt: "A couple on a balcony at Treasor at dusk" },
+    facts: [
+      { value: "G+29", label: "Floors" },
+      { value: "20", label: "Acres" },
+      { value: "3 & 4", label: "BHK" },
+      { value: "1,765–5,080", label: "Sft" },
+      { value: "13", label: "Amenities" },
+    ],
     sections: {
       intro: {
         title: ["Treasor", "Kokapet"],
@@ -201,7 +218,7 @@ export const projects: Project[] = [
         label: ["3 & 4 BHK", "G+29 floors", "20 acres"],
       },
       tower: {
-        image: { src: "/projects/treasor/hero.jpg", alt: "Treasor towers at sunset" },
+        image: { src: "/projects/treasor/towers-dusk.webp", alt: "Treasor towers at dusk" },
         heading: ["Soaring up to", "G+29 floors"],
         intro: "Soaring up to G+29 floors, the towering landmark features meticulously engineered homes with expansive balconies that invite the sky in. Some luxuries are admired from afar. Others? You live in them.",
         lead: "Hallmark Treasor rises with strength and precision, built using next-gen MIVAN monolithic construction technology, renowned worldwide for its structural integrity, accuracy, and speed.",
@@ -273,7 +290,6 @@ export const projects: Project[] = [
         ],
         button: { label: "Enquire", href: "tel:+919519781978" },
       },
-      choose: chooseHome("Treasor"),
     },
   },
 
@@ -287,6 +303,13 @@ export const projects: Project[] = [
     tagline: "3 & 4 BHK Apartments & G+2 Triplex Villas",
     rera: "P01100007551",
     card: { src: "/projects/floresta/g-pergola.webp", alt: "Pergola walk beside the Floresta villas" },
+    facts: [
+      { value: "G+2", label: "Triplex villas" },
+      { value: "233–300", label: "Sq. yds plots" },
+      { value: "3,750–4,605", label: "Sft" },
+      { value: "22,820", label: "Sq. ft. clubhouse" },
+      { value: "19", label: "Amenities" },
+    ],
     sections: {
       intro: {
         title: ["Floresta", "Pati, Kollur"],
@@ -294,7 +317,7 @@ export const projects: Project[] = [
         label: ["G+2 triplex villas", "& apartments", "Kollur"],
       },
       tower: {
-        image: { src: "/projects/floresta/hero.jpg", alt: "Floresta villas among trees" },
+        image: { src: "/projects/floresta/villa-front.webp", alt: "Floresta villa among trees" },
         heading: ["Embrace", "radiant living"],
         intro: "Nestled amidst lush greenery, Floresta offers an exquisite blend of urban sophistication and natural serenity.",
         lead: "These ultra-luxury G+2 villas are enveloped by 3,475 acres of ICRISAT green fields, providing a rare sanctuary away from the city’s chaos.",
@@ -366,7 +389,6 @@ export const projects: Project[] = [
         ],
         button: { label: "Enquire", href: "tel:+919519781978" },
       },
-      choose: { ...chooseHome("Floresta"), heading: ["Choose", "your villa"] },
     },
   },
 
@@ -401,3 +423,5 @@ export const projects: Project[] = [
 export function findProject(slug: string) {
   return projects.find((project) => project.slug === slug);
 }
+
+export const fullProjects = projects.filter((project): project is FullProject => project.kind === "full");

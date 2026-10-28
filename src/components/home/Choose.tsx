@@ -6,12 +6,14 @@ import { FinRibbon } from "@/components/brand/FinRibbon";
 
 /*
   Last call to action above the footer: "Choose ... your home"
-  with two buttons in the middle and the slow 3D fin ribbon behind it.
+  with two buttons along the bottom and the slow 3D fin ribbon filling the screen behind it
+  (a white fade at the bottom keeps the heading readable).
 */
 export function Choose({ content: choose }: { content: ChooseContent }) {
   return (
-    <section id="choose" className="relative z-10 flex h-[60vh] min-h-[420px] flex-col justify-end overflow-hidden bg-white px-5 pb-5">
-      <FinRibbon className="absolute -top-[16vh] left-1/2 aspect-square h-[85vh] -translate-x-1/2" />
+    <section id="choose" className="relative z-10 flex h-svh min-h-[560px] flex-col justify-end overflow-hidden bg-white px-5 pb-5">
+      <FinRibbon fill className="absolute inset-0 size-full" />
+      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-white via-white/70 to-transparent" />
 
       <div className="relative grid grid-cols-2 items-end gap-5 md:grid-cols-12">
         <h2 className="text-h1 col-span-2 md:col-span-4">{choose.heading[0]}</h2>

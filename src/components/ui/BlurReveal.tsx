@@ -3,8 +3,9 @@
 import { motion } from "motion/react";
 
 /*
-  Text that appears word by word out of a soft blur ("blur reveal"),
-  and blurs away again when `show` turns false.
+  Text that appears word by word (fades in and rises a little),
+  and fades away again when `show` turns false.
+  Only opacity and position move: a blur on every word repaints every frame and lags.
 */
 type Props = {
   text: string;
@@ -23,8 +24,8 @@ export function BlurReveal({ text, show, className = "" }: Props) {
         <motion.span
           key={`${word}-${index}`}
           className="inline-block whitespace-pre"
-          initial={{ opacity: 0, filter: "blur(10px)", y: 8 }}
-          animate={show ? { opacity: 1, filter: "blur(0px)", y: 0 } : { opacity: 0, filter: "blur(10px)", y: -6 }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: -6 }}
           transition={{
             duration: show ? 0.8 : 0.4,
             ease: EASE,

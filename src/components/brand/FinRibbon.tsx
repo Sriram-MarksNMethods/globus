@@ -10,15 +10,27 @@ import { useEffect, useRef } from "react";
   background melt into the page. The render is a close-up, so the fins run off the
   frame; a soft radial mask fades them out before the video's square edge.
 
+  The light video is only ever shown on white, so it needs no blend mode (multiplying
+  by white changes nothing, but still costs a full repaint of every frame).
+
   The video pauses while it is off screen.
+  `fill`: cover the whole box edge to edge instead (no circular mask), for full-screen use.
 */
 
 const SOURCES = {
-  light: { name: "/brand/fins-light", blend: "mix-blend-multiply" },
+  light: { name: "/brand/fins-light", blend: "" },
   dark: { name: "/brand/fins-dark", blend: "mix-blend-screen" },
 };
 
-export function FinRibbon({ className = "", tone = "light" }: { className?: string; tone?: keyof typeof SOURCES }) {
+export function FinRibbon({
+  className = "",
+  tone = "light",
+  fill = false,
+}: {
+  className?: string;
+  tone?: keyof typeof SOURCES;
+  fill?: boolean;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -48,7 +60,7 @@ export function FinRibbon({ className = "", tone = "light" }: { className?: stri
       autoPlay
       preload="metadata"
       aria-hidden="true"
-      className={`pointer-events-none object-contain [mask-image:radial-gradient(closest-side,black_60%,transparent)] ${SOURCES[tone].blend} ${className}`}
+      className={`pointer-events-none ${fill ? "object-cover" : "object-contain [mask-image:radial-gradient(closest-side,black_60%,transparent)]"} ${SOURCES[tone].blend} ${className}`}
     >
       {/* WebM plays in every modern browser; MP4 is the fallback. */}
       <source src={`${SOURCES[tone].name}.webm`} type="video/webm" />

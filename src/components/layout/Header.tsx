@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav } from "@/content/home";
 import { Button } from "@/components/ui/Button";
@@ -14,21 +15,38 @@ export function Header() {
   const [onDark, setOnDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // The browser tells us when a dark section crosses a 1px line at the header's middle
+  // (no measuring on every scroll). Re-done on each page, as every page has its own sections.
+  const pathname = usePathname();
   useEffect(() => {
-    function checkTheme() {
-      const headerMiddle = 35;
-      const darkSections = document.querySelectorAll('[data-theme="dark"]');
-      let dark = false;
-      darkSections.forEach((section) => {
-        const box = section.getBoundingClientRect();
-        if (box.top <= headerMiddle && box.bottom >= headerMiddle) dark = true;
-      });
-      setOnDark(dark);
+    const headerMiddle = 35;
+    const underHeader = new Set<Element>();
+    let observer: IntersectionObserver | undefined;
+
+    function watch() {
+      observer?.disconnect();
+      underHeader.clear();
+      const next = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) underHeader.add(entry.target);
+            else underHeader.delete(entry.target);
+          });
+          setOnDark(underHeader.size > 0);
+        },
+        { rootMargin: `-${headerMiddle}px 0px -${window.innerHeight - headerMiddle - 1}px 0px` },
+      );
+      document.querySelectorAll('[data-theme="dark"]').forEach((section) => next.observe(section));
+      observer = next;
     }
-    checkTheme();
-    window.addEventListener("scroll", checkTheme, { passive: true });
-    return () => window.removeEventListener("scroll", checkTheme);
-  }, []);
+
+    watch();
+    window.addEventListener("resize", watch);
+    return () => {
+      window.removeEventListener("resize", watch);
+      observer?.disconnect();
+    };
+  }, [pathname]);
 
   const dark = onDark && !menuOpen;
 
@@ -63,7 +81,7 @@ export function Header() {
         </Link>
 
         <Button
-          href="/homes"
+          href="/contact"
           label={nav.cta}
           size="sm"
           onDark={dark}

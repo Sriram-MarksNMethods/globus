@@ -1,7 +1,8 @@
 """
 Turns the transparent Blender frames into the two site videos.
 
-  python3 encode.py <frames_dir> <public_brand_dir>
+  python3 encode.py <frames_dir> <public_brand_dir> [name] [tones]
+  e.g. python3 encode.py frames-slim ../../public/brand fins-slim light
 
 - light: frames placed on pure white  → fins-light.webm / .mp4
 - dark:  the same frames, slightly dimmed, on pure black → fins-dark.webm / .mp4
@@ -15,11 +16,13 @@ import tempfile
 from PIL import Image, ImageEnhance
 
 frames_dir, out_dir = sys.argv[1], sys.argv[2]
+name_prefix = sys.argv[3] if len(sys.argv) > 3 else "fins"
+tones = sys.argv[4].split(",") if len(sys.argv) > 4 else ["light", "dark"]
 frames = sorted(f for f in os.listdir(frames_dir) if f.endswith(".png"))
 print(len(frames), "frames")
 
 with tempfile.TemporaryDirectory() as work:
-    for tone in ("light", "dark"):
+    for tone in tones:
         tone_dir = os.path.join(work, tone)
         os.makedirs(tone_dir)
         for name in frames:
@@ -35,11 +38,11 @@ with tempfile.TemporaryDirectory() as work:
             background.convert("RGB").save(os.path.join(tone_dir, name))
 
         pattern = os.path.join(tone_dir, "f%04d.png")
-        mp4 = os.path.join(out_dir, f"fins-{tone}.mp4")
-        webm = os.path.join(out_dir, f"fins-{tone}.webm")
+        mp4 = os.path.join(out_dir, f"{name_prefix}-{tone}.mp4")
+        webm = os.path.join(out_dir, f"{name_prefix}-{tone}.webm")
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-framerate", "24", "-i", pattern,
-                        "-c:v", "libx264", "-preset", "slow", "-crf", "22", "-pix_fmt", "yuv420p",
+                        "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-pix_fmt", "yuv420p",
                         "-movflags", "+faststart", mp4], check=True)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", mp4, "-c:v", "libvpx-vp9", "-b:v", "0",
-                        "-crf", "34", "-row-mt", "1", "-an", webm], check=True)
+                        "-crf", "28", "-row-mt", "1", "-an", webm], check=True)
         print(tone, os.path.getsize(mp4) // 1024, "KB mp4,", os.path.getsize(webm) // 1024, "KB webm")

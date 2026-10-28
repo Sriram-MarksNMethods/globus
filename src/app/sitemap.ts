@@ -5,7 +5,7 @@ import { news } from "@/content/pages";
 
 /* sitemap.xml for search engines. New projects and news posts are added automatically. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/projects", "/homes", "/location", "/about", "/progress", "/news", "/contact", "/career", "/partner-with-us", "/privacy-policy"];
+  const pages = ["", "/projects", "/location", "/about", "/progress", "/news", "/contact", "/career", "/partner-with-us", "/privacy-policy"];
 
   return [
     ...pages.map((path) => ({ url: `${site.url}${path}` })),

@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { nav } from "@/content/home";
-import { FinRibbon } from "@/components/brand/FinRibbon";
+import { LoopVideo } from "@/components/ui/LoopVideo";
 import { PlusIcon } from "@/components/ui/Button";
 
 /*
-  Full-screen menu: a centred grey panel.
+  Full-screen menu: the silver tunnel film fills the screen, with a centred grey panel on top.
   Left: main links (large) and secondary links (small, at the bottom).
   Right: two tiles with a plus button each.
 */
@@ -18,12 +18,12 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
       }`}
       aria-hidden={!open}
     >
-      {/* 3D G behind the panel, only running while the menu is open */}
-      {open && <FinRibbon className="absolute -top-[10vh] right-[10vw] hidden aspect-square w-[44vw] md:block" />}
+      {/* Silver tunnel film behind the panel, only loaded and running while the menu is open */}
+      {open && <LoopVideo name="/brand/menu-tunnel" eager className="absolute inset-0 size-full" />}
 
       <div className="absolute inset-x-5 top-[100px] bottom-5 flex md:inset-x-auto md:top-[141px] md:bottom-auto md:left-1/2 md:h-[640px] md:w-[690px] md:-translate-x-1/2">
         {/* Left column */}
-        <div className="flex flex-1 flex-col justify-between rounded-l-[5px] bg-soft/90 p-5 backdrop-blur-[20px]">
+        <div className="flex flex-1 flex-col justify-between rounded-l-[5px] bg-soft p-5">
           <ul>
             {nav.main.map((link) => (
               <li key={link.label}>
@@ -51,7 +51,7 @@ export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) 
               key={tile.label}
               href={tile.href}
               onClick={onClose}
-              className={`group flex flex-1 flex-col justify-between bg-soft/90 p-5 backdrop-blur-[20px] ${
+              className={`group flex flex-1 flex-col justify-between bg-soft p-5 ${
                 index === 0 ? "rounded-tr-[5px] border-b border-black/10" : "rounded-br-[5px]"
               }`}
             >

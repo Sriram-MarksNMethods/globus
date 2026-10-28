@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 export default function NotFound() {
   return (
     <main className="bg-white">
-      <section className="flex min-h-screen flex-col justify-between px-5 pt-[110px] pb-5 md:pt-[160px]">
+      <section className="flex min-h-svh flex-col justify-between px-5 pt-[110px] pb-5 md:pt-[160px]">
         <h1 className="text-h1 flex flex-col md:flex-row md:justify-between">
           <span>Page</span>
           <span className="self-end md:self-auto">not found</span>

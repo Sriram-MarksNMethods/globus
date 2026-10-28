@@ -14,9 +14,9 @@ export function ProjectsHero() {
   const fade = useTransform(scrollYProgress, [0, 0.9], [1, 0]);
 
   return (
-    <section ref={sectionRef} className="relative h-screen min-h-[560px]">
+    <section ref={sectionRef} className="relative h-svh min-h-[560px]">
       <motion.div style={{ opacity: fade }} className="absolute inset-0 overflow-hidden bg-[#e5e5e5]">
-        <LoopVideo name="/brand/projects-tunnel" className="size-full" />
+        <LoopVideo name="/brand/projects-tunnel" eager className="size-full" />
 
         <h1 className="text-h1 absolute inset-x-5 top-1/2 flex -translate-y-1/2 flex-col items-center text-center">
           <span>Our</span>

@@ -24,7 +24,7 @@ export function Button({ href, label, variant = "dark", size = "tall", onDark = 
   const colors = {
     dark: onDark ? "bg-white text-black hover:bg-[#d6d6d6]" : "bg-black text-white hover:bg-[#333]",
     light: onDark
-      ? "bg-white/10 text-white backdrop-blur-[20px] hover:bg-white/20"
+      ? "bg-white/15 text-white hover:bg-white/25"
       : "bg-chip text-black hover:bg-[#dcdcdc]",
   }[variant];
 
