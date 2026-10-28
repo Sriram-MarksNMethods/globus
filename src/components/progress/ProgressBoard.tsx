@@ -33,7 +33,7 @@ export function ProgressBoard() {
         ))}
       </div>
 
-      <div className="mx-auto mt-[80px] max-w-[927px]">
+      <div className="mx-auto mt-10 max-w-[927px]">
         {update ? (
           <>
             <div className="relative aspect-video overflow-hidden rounded-[5px] bg-black">
@@ -50,7 +50,7 @@ export function ProgressBoard() {
             </p>
           </>
         ) : (
-          <p className="text-body mx-auto max-w-[453px] py-[120px] text-center text-grey">{progress.emptyNote}</p>
+          <p className="text-copy md:mx-auto md:max-w-[453px] py-[60px] md:text-center text-[#555] md:text-grey">{progress.emptyNote}</p>
         )}
       </div>
     </div>

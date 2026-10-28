@@ -13,16 +13,16 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="bg-white">
-      <section className="pt-[110px] pb-[160px] md:pt-[160px]">
+      <section className="pt-[90px] pb-[80px] md:pt-[160px]">
         <h1 className="text-h1 flex flex-col px-5 md:flex-row md:justify-between">
           <span>{contact.heading[0]}</span>
-          <span className="self-end md:self-auto">{contact.heading[1]}</span>
+          <span>{contact.heading[1]}</span>
         </h1>
 
         <div className="mt-10 grid grid-cols-1 gap-5 px-5 md:mt-[80px] md:grid-cols-12">
           {/* Office details */}
           <div className="flex flex-col gap-8 md:col-span-4">
-            <p className="text-body text-grey">{contact.details}</p>
+            <p className="text-copy text-[#555] md:text-grey">{contact.details}</p>
 
             <dl className="flex flex-col gap-6">
               <div>
@@ -51,7 +51,7 @@ export default function ContactPage() {
           {/* Enquiry form */}
           <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:col-start-6 md:p-10">
             <h2 className="text-h2">Enquire now</h2>
-            <p className="text-body mt-3 mb-8 text-grey">{contact.intro}</p>
+            <p className="text-copy mt-3 mb-8 text-[#555] md:text-grey">{contact.intro}</p>
             <LeadForm form="contact" submitLabel="Submit enquiry">
               <Field name="name" label="Full name" autoComplete="name" />
               <Field name="phone" label="Mobile number" type="tel" autoComplete="tel" />

@@ -8,6 +8,7 @@ import type { Project } from "@/content/projects";
   a numbered circle, a short description, and the project name set very large.
   Hovering a row wipes the project's photo up behind it (dimmed, slowly settling from a slight zoom),
   underlines the name and slides in an arrow. The whole row links to the project page.
+  Touch screens cannot hover, so there the photo simply sits behind each row, dimmed.
 */
 const REVEAL = "ease-[cubic-bezier(0.16,1,0.3,1)]";
 
@@ -16,7 +17,7 @@ export function ProjectsIndex({ projects }: { projects: Project[] }) {
   const upcoming = projects.filter((project) => project.status === "Upcoming").length;
 
   return (
-    <section data-theme="dark" className="bg-[#151717] py-[80px] text-white md:py-[112px]">
+    <section data-theme="dark" className="bg-[#151717] py-[60px] text-white md:py-[112px]">
       {/* Label + title */}
       <div className="grid grid-cols-1 gap-5 px-5 md:grid-cols-12">
         <p className="text-small md:col-span-5">Projects</p>
@@ -32,7 +33,7 @@ export function ProjectsIndex({ projects }: { projects: Project[] }) {
             <Link href={`/projects/${project.slug}`} className="group relative block overflow-hidden">
               {/* Photo: wipes up from the bottom on hover */}
               <div
-                className={`absolute inset-0 scale-[1.05] opacity-0 [clip-path:inset(100%_0_0)] transition-[opacity,transform,clip-path] duration-[400ms,4000ms,1000ms] ${REVEAL} group-hover:scale-100 group-hover:opacity-40 group-hover:[clip-path:inset(0)] group-focus-visible:scale-100 group-focus-visible:opacity-40 group-focus-visible:[clip-path:inset(0)]`}
+                className={`absolute inset-0 scale-[1.05] opacity-0 [clip-path:inset(100%_0_0)] transition-[opacity,transform,clip-path] duration-[400ms,4000ms,1000ms] ${REVEAL} group-hover:scale-100 group-hover:opacity-40 group-hover:[clip-path:inset(0)] group-focus-visible:scale-100 group-focus-visible:opacity-40 group-focus-visible:[clip-path:inset(0)] pointer-coarse:scale-100 pointer-coarse:opacity-40 pointer-coarse:[clip-path:inset(0)]`}
                 aria-hidden="true"
               >
                 <Image src={project.card.src} alt="" fill sizes="100vw" className="object-cover" />

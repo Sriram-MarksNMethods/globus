@@ -16,7 +16,7 @@ export function AboutHero() {
       <FinRibbon className="absolute top-1/2 left-1/2 h-[115vh] w-[115vh] -translate-x-1/2 -translate-y-1/2" />
       <h1 className="text-h1 absolute inset-x-5 top-[100px] flex flex-col md:top-1/2 md:-translate-y-1/2 md:flex-row md:justify-between">
         <span>{about.heading[0]}</span>
-        <span className="self-end md:self-auto">{about.heading[1]}</span>
+        <span>{about.heading[1]}</span>
       </h1>
       <p className="text-body absolute right-5 bottom-10 left-5 text-center text-grey md:top-[calc(50%-60px)] md:bottom-auto md:left-[33vw] md:right-auto md:w-[200px]">
         {about.label.map((line) => (
@@ -102,7 +102,7 @@ function Bar({ index, count, progress }: { index: number; count: number; progres
 /* Lead line on the right, photo left, two paragraphs beside it. */
 export function Story() {
   return (
-    <section className="bg-white pt-[120px] md:pt-[240px]">
+    <section className="bg-white pt-[60px] md:pt-[240px]">
       <div className="grid grid-cols-1 gap-5 px-5 md:grid-cols-12">
         <p className="text-h2 md:col-span-6 md:col-start-7">{about.story.lead}</p>
         <div className="relative aspect-[927/618] overflow-hidden rounded-[5px] md:col-span-8">
@@ -110,7 +110,7 @@ export function Story() {
         </div>
         <div className="flex flex-col gap-4 md:col-span-4 md:justify-end">
           {about.story.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 20)} className="text-body text-grey">
+            <p key={paragraph.slice(0, 20)} className="text-copy text-[#555] md:text-grey">
               {paragraph}
             </p>
           ))}
@@ -124,7 +124,7 @@ export function Story() {
 /* Three grey tiles: big number top-left, label bottom-right. */
 export function Numbers() {
   return (
-    <section className="bg-white pt-[120px] md:pt-[240px]">
+    <section className="bg-white pt-[60px] md:pt-[240px]">
       <ul className="grid grid-cols-1 gap-5 px-5 md:grid-cols-3">
         {about.numbers.map((number) => (
           <li key={number.value} className="flex min-h-[190px] flex-col justify-between rounded-[5px] bg-soft p-5 md:aspect-[453/414] md:min-h-0">

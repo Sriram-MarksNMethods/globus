@@ -19,11 +19,11 @@ const number = "mr-3 text-grey md:absolute md:right-full md:mr-0 md:w-[70px] md:
 export default function PrivacyPage() {
   return (
     <main className="bg-white">
-      <article className="pt-[140px] pb-[160px] md:pt-[240px]">
+      <article className="pt-[100px] pb-[80px] md:pt-[240px]">
         <h1 className="text-h1 mx-auto max-w-[730px] px-5 text-center">Privacy policy</h1>
         <p className="text-small mt-5 text-center text-grey">Last updated: {privacy.lastUpdated}</p>
 
-        <div className={`${text} mx-auto mt-[100px] max-w-[730px] px-5 md:mt-[160px]`}>
+        <div className={`${text} mx-auto mt-[60px] max-w-[730px] px-5 md:mt-[160px]`}>
           <p>{privacy.intro}</p>
 
           {privacy.sections.map((section, index) => (

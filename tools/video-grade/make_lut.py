@@ -21,7 +21,7 @@ RAMPS = {
     # Mid-tones a lighter plum so the burgundy side still reads as polished metal.
     "burgundy": [(0.00, "#160812"), (0.45, "#351530"), (0.68, "#6b2a5f"), (0.84, WHITE), (1.00, WHITE)],
 }
-FRAME_SIZES = [(1920, 1012), (720, 1556), (1920, 1080), (600, 1296)]
+FRAME_SIZES = [(720, 1280), (1920, 1012), (720, 1556), (1920, 1080)]
 
 
 def rgb(hex_colour):

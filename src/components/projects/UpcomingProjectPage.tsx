@@ -24,11 +24,11 @@ export function UpcomingProjectPage({ project }: { project: UpcomingProject }) {
         </div>
       </section>
 
-      <section className="bg-white pt-[120px] pb-[160px] md:pt-[240px]">
+      <section className="bg-white pt-[60px] pb-[80px] md:pt-[240px]">
         <div className="grid grid-cols-1 gap-5 px-5 md:grid-cols-12">
           <p className="text-h2 md:col-span-6 md:col-start-7">{project.description}</p>
         </div>
-        <SplitHeading parts={["Register", "your interest"]} className="mt-[120px] md:mt-[240px]" />
+        <SplitHeading parts={["Register", "your interest"]} className="mt-[60px] md:mt-[240px]" />
         <div className="mt-5 flex gap-5 px-5">
           <Button href="tel:+919519781978" label="Call +91 95 1978 1978" className="w-[217px]" />
           <Button href="mailto:info@globusdevelopers.com" label="Email us" variant="light" className="w-[217px]" />

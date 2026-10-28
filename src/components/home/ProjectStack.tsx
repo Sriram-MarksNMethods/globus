@@ -7,6 +7,9 @@ import { Button, PlusIcon } from "@/components/ui/Button";
 /*
   The Globus projects. Each ongoing project fills the screen and stays put while the
   next one slides up over it (plain CSS `sticky`, no scroll scripts).
+  Each card is taller than the screen (the extra part sits unseen below it), so a card holds
+  still, fully visible with its button, for a while before the next one starts to cover it.
+  The whole photo is a link to the project too, not only the button.
   The upcoming projects follow as two smaller cards.
 */
 export function ProjectStack() {
@@ -18,21 +21,31 @@ export function ProjectStack() {
         {fullProjects.map((project, index) => {
           const photo = project.sections.tower.image;
           return (
-            <li key={project.slug} data-theme="dark" className="sticky top-0 h-svh overflow-hidden bg-black text-white">
-              <Image src={photo.src} alt={photo.alt} fill sizes="100vw" quality={90} className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+            <li key={project.slug} data-theme="dark" className="sticky top-0 h-[160svh] bg-black text-white last:h-svh">
+              <div className="relative h-svh overflow-hidden">
+                <Image src={photo.src} alt={photo.alt} fill sizes="100vw" quality={90} className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                {/* Tap anywhere on the photo (the button stays the link for keyboards and screen readers) */}
+                <Link href={`/projects/${project.slug}`} tabIndex={-1} aria-hidden="true" className="absolute inset-0" />
 
-              <div className="absolute inset-x-5 bottom-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-                <div>
-                  <p className="text-small text-white/70">
-                    {String(index + 1).padStart(2, "0")} / {String(fullProjects.length).padStart(2, "0")} · {project.status}
-                  </p>
-                  <h3 className="text-h1 mt-3">{project.name}</h3>
-                  <p className="text-body mt-2 text-white/80">
-                    {project.area} · {project.tagline}
-                  </p>
+                <div className="pointer-events-none absolute inset-x-5 bottom-5 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <p className="text-small text-white/70">
+                      {String(index + 1).padStart(2, "0")} / {String(fullProjects.length).padStart(2, "0")} · {project.status}
+                    </p>
+                    <h3 className="text-h1 mt-3">{project.name}</h3>
+                    <p className="text-body mt-2 text-white/80">
+                      {project.area} · {project.tagline}
+                    </p>
+                  </div>
+                  <Button
+                    href={`/projects/${project.slug}`}
+                    label={showcase.button}
+                    variant="light"
+                    onDark
+                    className="pointer-events-auto w-[217px]"
+                  />
                 </div>
-                <Button href={`/projects/${project.slug}`} label={showcase.button} variant="light" onDark className="w-[217px]" />
               </div>
             </li>
           );
@@ -40,7 +53,7 @@ export function ProjectStack() {
       </ul>
 
       {/* Upcoming */}
-      <div className="relative bg-white px-5 pt-5 pb-[120px] md:pb-[200px]">
+      <div className="relative bg-white px-5 pt-5 pb-[60px] md:pb-[200px]">
         <h3 className="text-small text-grey">{showcase.upcoming}</h3>
         <ul className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
           {upcoming.map((project) => (

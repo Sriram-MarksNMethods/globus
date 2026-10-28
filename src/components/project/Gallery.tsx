@@ -24,7 +24,7 @@ export function Gallery({ content: views }: { content: ViewsContent }) {
   const slides = [...views.images, ...views.images];
 
   return (
-    <section className="bg-white pt-[120px] md:pt-[200px]">
+    <section className="bg-white pt-[60px] md:pt-[200px]">
       <div className="grid grid-cols-1 px-5 md:grid-cols-12 md:gap-5">
         <p className="text-h2 md:col-span-6 md:col-start-7">{views.lead}</p>
       </div>
@@ -55,7 +55,7 @@ export function Gallery({ content: views }: { content: ViewsContent }) {
         </div>
       )}
 
-      <p className="text-body mx-auto mt-[60px] max-w-[453px] px-5 text-center text-grey">{views.text}</p>
+      <p className="text-copy md:mx-auto mt-[60px] md:max-w-[453px] px-5 md:text-center text-[#555] md:text-grey">{views.text}</p>
     </section>
   );
 }

@@ -19,10 +19,18 @@
   --color-orange: #f04e37; /* Globus logo */
 }
 
+/* Upright tablets and up: wide AND tall enough for a centred desktop-style panel
+   (a phone held sideways is wide but short, so it keeps the phone layout). */
+@custom-variant tablet {
+  @media (width >= 640px) and (height >= 800px) {
+    @slot;
+  }
+}
+
 /*
   The four text styles used across the site.
   Fluid between breakpoints, exactly like the reference:
-  390px → 1024px → 1440px → 1920px. (Phones and portrait tablets share the first size.)
+  390px → 640px (tablets) → 1024px → 1440px → 1920px.
 */
 @utility text-h1 {
   font-size: 42px;
@@ -30,6 +38,11 @@
   letter-spacing: -0.02em;
   text-transform: uppercase;
   font-weight: 400;
+  /* Tablets (portrait): still the stacked layout, but sized for the bigger screen. */
+  @media (640px <= width < 1024px) {
+    font-size: 58px;
+    line-height: 58px;
+  }
   @media (width >= 1024px) {
     font-size: calc(71 / 1440 * 100vw);
     line-height: 0.986;
@@ -47,6 +60,10 @@
   letter-spacing: -0.01em;
   text-transform: uppercase;
   font-weight: 400;
+  @media (640px <= width < 1024px) {
+    font-size: 26px;
+    line-height: 29px;
+  }
   @media (width >= 1024px) {
     font-size: calc(28 / 1440 * 100vw);
     line-height: 1.07;
@@ -62,8 +79,8 @@
   line-height: 16px;
   font-weight: 500;
   text-transform: uppercase;
-  /* Stays at the phone size on tablets; desktop size from 1280px. */
-  @media (width >= 1280px) {
+  /* Tablets and up */
+  @media (width >= 640px) {
     font-size: 14px;
     line-height: 18px;
   }
@@ -75,11 +92,32 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  /* Stays at the phone size on tablets; desktop size from 1280px. */
-  @media (width >= 1280px) {
+  /* Tablets and up */
+  @media (width >= 640px) {
     font-size: 11px;
     line-height: 14px;
     letter-spacing: 0;
+  }
+}
+
+/*
+  Longer paragraphs. Desktop: the same uppercase body style as text-body.
+  Phones and portrait tablets: sentence case and bigger, because a block of small
+  capitals is hard to read on a small screen.
+*/
+@utility text-copy {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+  @media (640px <= width < 1024px) {
+    font-size: 17px;
+    line-height: 25px;
+  }
+  @media (width >= 1024px) {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
   }
 }
 
@@ -105,4 +143,12 @@ body {
   font-family: var(--font-sans);
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent; /* no grey flash on tapped links (iOS) */
+}
+
+/* iOS in Low Power Mode refuses to autoplay and draws a big play button on the video instead.
+   Our videos are background loops, so hide it: the poster frame shows instead. */
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
 }

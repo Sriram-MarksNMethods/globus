@@ -14,9 +14,9 @@ export function PlanViewer({ content: homes }: { content: HomesContent }) {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="plans" className="bg-white pt-[120px] pb-[120px] md:pt-[200px] md:pb-[200px]">
+    <section id="plans" className="bg-white pt-[60px] pb-[60px] md:pt-[200px] md:pb-[200px]">
       <SplitHeading parts={homes.heading} />
-      <p className="text-body mx-auto mt-5 max-w-[340px] px-5 text-center text-grey">{homes.intro}</p>
+      <p className="text-copy md:mx-auto mt-5 md:max-w-[340px] px-5 md:text-center text-[#555] md:text-grey">{homes.intro}</p>
 
       <div className="mt-[60px] grid grid-cols-1 gap-5 px-5 md:mt-[100px] md:grid-cols-12">
         {/* All plans stacked; only the picked one is visible */}

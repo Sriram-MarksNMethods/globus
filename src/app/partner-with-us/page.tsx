@@ -12,10 +12,10 @@ export const metadata: Metadata = {
 export default function PartnerPage() {
   return (
     <main className="bg-white">
-      <section className="pt-[110px] pb-[160px] md:pt-[160px]">
+      <section className="pt-[90px] pb-[80px] md:pt-[160px]">
         <h1 className="text-h1 flex flex-col px-5 md:flex-row md:justify-between">
           <span>{partner.heading[0]}</span>
-          <span className="self-end md:self-auto">{partner.heading[1]}</span>
+          <span>{partner.heading[1]}</span>
         </h1>
 
         <div className="mt-10 grid grid-cols-1 gap-5 px-5 md:mt-[80px] md:grid-cols-12">
@@ -28,7 +28,7 @@ export default function PartnerPage() {
 
           <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:col-start-6 md:p-10">
             <h2 className="text-h2">{partner.formTitle}</h2>
-            <p className="text-body mt-3 mb-8 text-grey">{partner.formNote}</p>
+            <p className="text-copy mt-3 mb-8 text-[#555] md:text-grey">{partner.formNote}</p>
             <LeadForm form="partner" submitLabel="Submit application">
               <Field name="name" label="Full name" autoComplete="name" />
               <Field name="company" label="Company name" autoComplete="organization" required={false} />

@@ -15,7 +15,7 @@ const ongoing = projects.filter((project) => project.status === "Ongoing");
 
 export function Footer({ breadcrumb }: { breadcrumb?: string }) {
   return (
-    <footer data-theme="dark" className="relative z-10 bg-black px-5 pt-[90px] pb-5 text-white md:pt-[110px]">
+    <footer data-theme="dark" className={`relative z-10 bg-black px-5 pb-5 text-white md:pt-[110px] ${breadcrumb ? "pt-[90px]" : "pt-[60px]"}`}>
       {breadcrumb && (
         <nav aria-label="Breadcrumb" className="text-small absolute inset-x-5 top-5 flex gap-2 border-b border-white/15 pb-4 text-grey">
           <Link href="/" className="text-white hover:text-grey">Home</Link>
@@ -34,7 +34,7 @@ export function Footer({ breadcrumb }: { breadcrumb?: string }) {
       </div>
 
       {/* 2. Columns */}
-      <div className="mt-[48px] grid grid-cols-2 gap-x-5 gap-y-8 border-t border-white/15 pt-5 md:mt-[72px] md:grid-cols-12">
+      <div className="mt-8 grid grid-cols-2 gap-x-5 gap-y-8 border-t border-white/15 pt-5 md:mt-[72px] md:grid-cols-12">
         <FooterColumn title={footer.columns.links} className="md:col-span-3">
           {nav.main.map((link) => (
             <li key={link.label}>

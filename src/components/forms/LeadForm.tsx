@@ -61,7 +61,8 @@ export function LeadForm({ form, submitLabel, children }: { form: string; submit
   );
 }
 
-const INPUT = "text-body normal-case h-[50px] w-full rounded-[5px] bg-white px-[10px] outline-none focus:ring-1 focus:ring-black";
+// Touch screens get 16px text: iOS Safari zooms the page into any smaller field when it is tapped.
+const INPUT = "text-body normal-case pointer-coarse:text-[16px] h-[50px] w-full rounded-[5px] bg-white px-[10px] outline-none focus:ring-1 focus:ring-black";
 
 /* One text input with its label. `wide` makes it span both columns. */
 export function Field({
@@ -100,7 +101,7 @@ export function MessageField({ name, label }: { name: string; label: string }) {
   return (
     <label className="text-small block text-grey md:col-span-2">
       {label}
-      <textarea name={name} rows={4} className="text-body normal-case mt-[6px] w-full rounded-[5px] bg-white p-[10px] text-black outline-none focus:ring-1 focus:ring-black" />
+      <textarea name={name} rows={4} className="text-body normal-case pointer-coarse:text-[16px] pointer-coarse:leading-[20px] mt-[6px] w-full rounded-[5px] bg-white p-[10px] text-black outline-none focus:ring-1 focus:ring-black" />
     </label>
   );
 }

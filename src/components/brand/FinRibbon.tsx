@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { MP4 } from "@/components/ui/LoopVideo";
 
 /*
   The Globus fin sculpture: a pre-rendered, seamless 16-second loop.
@@ -62,9 +63,9 @@ export function FinRibbon({
       aria-hidden="true"
       className={`pointer-events-none ${fill ? "object-cover" : "object-contain [mask-image:radial-gradient(closest-side,black_60%,transparent)]"} ${SOURCES[tone].blend} ${className}`}
     >
-      {/* WebM plays in every modern browser; MP4 is the fallback. */}
+      {/* MP4 first (hardware-decoded on iPhones and iPads); WebM for browsers without H.264. */}
+      <source src={`${SOURCES[tone].name}.mp4`} type={MP4} />
       <source src={`${SOURCES[tone].name}.webm`} type="video/webm" />
-      <source src={`${SOURCES[tone].name}.mp4`} type="video/mp4" />
     </video>
   );
 }

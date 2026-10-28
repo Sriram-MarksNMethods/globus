@@ -25,7 +25,7 @@ export default async function NewsPostPage({ params }: Props) {
 
   return (
     <main className="bg-white">
-      <article className="pt-[110px] pb-[160px] md:pt-[160px]">
+      <article className="pt-[90px] pb-[80px] md:pt-[160px]">
         <div className="grid grid-cols-1 gap-5 px-5 md:grid-cols-12">
           <p className="text-small text-grey md:col-span-3">
             <Link href="/news" className="text-black hover:text-grey">
@@ -41,13 +41,13 @@ export default async function NewsPostPage({ params }: Props) {
           <Image src={post.cover.src} alt={post.cover.alt} fill priority sizes="100vw" className="object-cover" />
         </div>
 
-        <div className="mt-[80px] grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
+        <div className="mt-10 grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
           <div className="flex flex-col gap-10 md:col-span-6 md:col-start-5">
             {post.body.map((part) => (
               <section key={part.heading}>
                 <h2 className="text-h2">{part.heading}</h2>
                 {part.paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 24)} className="text-body mt-4 text-grey">
+                  <p key={paragraph.slice(0, 24)} className="text-copy mt-4 text-[#555] md:text-grey">
                     {paragraph}
                   </p>
                 ))}

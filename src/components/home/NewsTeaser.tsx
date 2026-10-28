@@ -15,11 +15,11 @@ export function NewsTeaser() {
   const featured = latest.length < 3 ? latest[0] : null;
 
   return (
-    <section className="relative z-10 bg-white pt-[120px] pb-[120px] md:pt-[200px] md:pb-[200px]">
+    <section className="relative z-10 bg-white pt-[60px] pb-[60px] md:pt-[200px] md:pb-[200px]">
       <SplitHeading parts={news.heading} />
 
       {featured ? (
-        <div className="mt-10 px-5">
+        <div className="mt-8 px-5 md:mt-10">
           <Link
             href={`/news/${featured.slug}`}
             className="grid grid-cols-1 gap-5 rounded-[5px] bg-soft p-[10px] transition-colors duration-500 hover:bg-chip md:grid-cols-12"
@@ -53,7 +53,7 @@ export function NewsTeaser() {
         </ul>
       )}
 
-      <div className="mt-10 px-5">
+      <div className="mt-6 px-5 md:mt-10">
         <Button href="/news" label={newsTeaser.button} variant="light" className="w-[217px]" />
       </div>
     </section>

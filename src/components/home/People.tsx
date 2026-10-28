@@ -14,16 +14,17 @@ export function People({ content: people }: { content: PeopleContent }) {
   const photoY = useTransform(scrollYProgress, [0, 1], ["-15vh", "15vh"]);
 
   return (
-    <section ref={sectionRef} data-theme="dark" className="relative z-10 h-[105vh] overflow-hidden bg-black text-white">
+    <section ref={sectionRef} data-theme="dark" className="relative z-10 h-[80svh] overflow-hidden md:h-[105vh] bg-black text-white">
       <motion.div style={{ y: photoY }} className="absolute inset-x-0 -top-[15vh] h-[calc(100%+30vh)]">
-        <Image src={people.image.src} alt={people.image.alt} fill sizes="100vw" quality={90} className="object-cover" />
+        {/* Upright screens crop to the couple (two thirds across the photo), not the wall in the middle */}
+        <Image src={people.image.src} alt={people.image.alt} fill sizes="100vw" quality={90} className="object-cover max-md:object-[66%_50%]" />
       </motion.div>
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
 
       <div className="absolute inset-x-5 bottom-5 flex flex-col gap-3 md:flex-row md:items-end">
         <p className="text-small md:w-[calc(2*(100vw-260px)/12+40px)] md:shrink-0">{people.label}</p>
-        <h2 className="text-h1 flex flex-1 flex-col md:flex-row md:justify-between">
-          <span>{people.heading[0]}</span>
+        <h2 className="text-h1 flex-1 md:flex md:flex-row md:justify-between">
+          <span>{people.heading[0]} </span>
           <span>{people.heading[1]}</span>
         </h2>
       </div>

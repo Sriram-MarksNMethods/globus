@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useLenis } from "lenis/react";
 import { nav } from "@/content/home";
 import { Button } from "@/components/ui/Button";
 import { Menu } from "./Menu";
@@ -10,6 +11,8 @@ import { Menu } from "./Menu";
 /*
   Fixed header: menu button on the left, main CTA on the right.
   It turns white-on-black while a section marked data-theme="dark" sits under it.
+  Phones and portrait tablets: it slides away while scrolling down and comes back on a solid bar
+  (white, or black over dark sections) when scrolling up, so it never sits on top of the content.
 */
 export function Header() {
   const [onDark, setOnDark] = useState(false);
@@ -48,11 +51,44 @@ export function Header() {
     };
   }, [pathname]);
 
+  // The page behind the open menu must not scroll (on iPhones a swipe on the menu would drag it).
+  const lenis = useLenis();
+  useEffect(() => {
+    if (!menuOpen) return;
+    lenis?.stop();
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      lenis?.start();
+      document.documentElement.style.overflow = "";
+    };
+  }, [menuOpen, lenis]);
+
+  // Phones: hide while scrolling down, show again (on a solid bar) when scrolling up.
+  const [hidden, setHidden] = useState(false);
+  const [solid, setSolid] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    function onScroll() {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) < 8) return; // ignore tiny jitters
+      setHidden(y > lastY && y > 80);
+      setSolid(y > 80);
+      lastY = y;
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const dark = onDark && !menuOpen;
+  const bar = solid && !menuOpen ? (dark ? "max-md:bg-black" : "max-md:bg-white") : "";
 
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-40 flex items-start justify-between p-5">
+      <header
+        className={`pointer-events-none fixed inset-x-0 top-0 z-40 flex items-start justify-between p-5 transition-[translate,background-color] duration-500 ease-[cubic-bezier(0.25,0.74,0.22,0.99)] ${bar} ${
+          hidden && !menuOpen ? "max-md:-translate-y-full" : ""
+        }`}
+      >
         <div className="pointer-events-auto flex gap-[10px]">
           <button
             type="button"

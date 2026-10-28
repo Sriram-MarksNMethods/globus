@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { motion } from "motion/react";
 import { useLenis } from "lenis/react";
+import { MP4 } from "@/components/ui/LoopVideo";
 import { INTRO_SEEN_KEY } from "./introSeen";
 
 /*
@@ -119,8 +120,8 @@ export function Preloader() {
           onEnded={startFly}
           onError={startFly}
         >
-          <source src="/brand/logo-intro.webm" type="video/webm" />
-          <source src="/brand/logo-intro.mp4" type="video/mp4" onError={startFly} />
+          <source src="/brand/logo-intro.mp4" type={MP4} />
+          <source src="/brand/logo-intro.webm" type="video/webm" onError={startFly} />
         </video>
       )}
 

@@ -76,7 +76,7 @@ export function ScrollSequence({ folder, frames }: { folder: string; frames: num
   });
 
   return (
-    <section ref={sectionRef} data-theme="dark" className="relative mt-[120px] h-[300svh] bg-black md:mt-[200px]">
+    <section ref={sectionRef} data-theme="dark" className="relative mt-[60px] h-[300svh] bg-black md:mt-[200px]">
       <div className="sticky top-0 h-svh overflow-hidden">
         <canvas ref={canvasRef} aria-hidden="true" className="size-full object-cover" />
       </div>

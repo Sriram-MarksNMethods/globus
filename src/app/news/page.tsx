@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 export default function NewsPage() {
   return (
     <main className="bg-white">
-      <section className="pt-[110px] pb-[160px] md:pt-[160px]">
+      <section className="pt-[90px] pb-[80px] md:pt-[160px]">
         <h1 className="text-h1 flex flex-col px-5 md:flex-row md:justify-between">
           <span>{news.heading[0]}</span>
-          <span className="self-end md:self-auto">{news.heading[1]}</span>
+          <span>{news.heading[1]}</span>
         </h1>
 
         <ul className="mt-10 grid grid-cols-1 gap-5 px-5 md:grid-cols-3">

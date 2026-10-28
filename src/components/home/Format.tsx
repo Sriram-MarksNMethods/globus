@@ -19,15 +19,16 @@ export function Format({ content: format }: { content: FormatContent }) {
   const factsRef = useRef<HTMLDivElement>(null);
   const width = useViewportWidth();
 
-  // Photo grows from 8 columns wide to the full width of the window.
+  // Photo grows from 8 columns wide to the full width of the window (desktop only;
+  // on phones and portrait tablets it is simply full width from the start).
   const column = (width - 260) / 12;
-  const smallScale = (column * 8 + 7 * 20) / width;
+  const smallScale = width >= 1024 ? (column * 8 + 7 * 20) / width : 1;
   const fullScale = 1;
   const { scrollYProgress: growProgress } = useScroll({ target: growRef, offset: ["start end", "start 0.3"] });
   const growScale = useTransform(growProgress, [0, 1], [smallScale, fullScale]);
   const photoScale = useTransform(growProgress, [0, 1], [1.25, 1]);
   // Rounded while it is a card, square once it reaches the window edges.
-  const radius = useTransform(growProgress, [0.7, 1], [14, 0]);
+  const radius = useTransform(growProgress, [0.7, 1], [width >= 1024 ? 14 : 0, 0]);
 
   // Pinned facts.
   const { scrollYProgress: factsProgress } = useScroll({ target: factsRef, offset: ["start start", "end end"] });
@@ -41,12 +42,12 @@ export function Format({ content: format }: { content: FormatContent }) {
     <section id="landmarks" className="relative z-10 -mt-[50svh] bg-white pt-[100px] md:pt-[120px]">
       <SplitHeading parts={format.heading} />
 
-      <p className="text-body mx-auto mt-[120px] max-w-[340px] px-5 text-center text-grey md:mt-[240px]">{format.intro}</p>
+      <p className="text-copy mt-6 px-5 text-[#555] md:mx-auto md:mt-[240px] md:max-w-[340px] md:text-center md:text-grey">{format.intro}</p>
 
-      <div ref={growRef} className="relative z-10 mt-[80px] md:mt-[166px]">
+      <div ref={growRef} className="relative z-10 mt-10 md:mt-[166px]">
         <motion.div
           style={{ scale: growScale, originY: 0, borderRadius: radius }}
-          className="relative aspect-[1440/1058] w-full overflow-hidden"
+          className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[1440/1058]"
         >
           <motion.div style={{ scale: photoScale, originY: 0 }} className="absolute inset-0">
             <Image src={format.image.src} alt={format.image.alt} fill sizes="100vw" quality={90} className="object-cover" />
@@ -55,15 +56,14 @@ export function Format({ content: format }: { content: FormatContent }) {
       </div>
 
       {/* Pinned two facts */}
-      <div ref={factsRef} className="relative -mt-[22vw] h-[260vh]">
+      <div ref={factsRef} className="relative h-[180vh] md:-mt-[22vw] md:h-[260vh]">
         <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden">
           {/* The spiral only moves inside its own video; the section itself stays still.
-              Always full width, centred; height follows the clip's own shape.
-              Below desktop it is kept within the screen height, so on a tablet the whole tunnel
-              shows instead of being cropped to its empty middle; its side edges fade into the page. */}
+              Desktop: full width, centred; height follows the clip's own shape.
+              Below desktop it fills the screen (upright screens get the upright cut of the tunnel). */}
           <LoopVideo
             name="/brand/projects-tunnel"
-            className="absolute inset-x-0 top-1/2 h-auto w-full -translate-y-1/2 max-md:inset-x-auto max-md:left-1/2 max-md:h-svh max-md:w-auto max-md:max-w-full max-md:-translate-x-1/2 max-md:object-contain sm:max-md:[mask-image:linear-gradient(to_right,transparent,#000_18%,#000_82%,transparent)]"
+            className="absolute inset-0 size-full md:top-1/2 md:bottom-auto md:h-auto md:-translate-y-1/2"
           />
 
           {/* Both facts share one centred box; the first is laid over the second. */}

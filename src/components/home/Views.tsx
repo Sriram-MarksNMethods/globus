@@ -17,18 +17,18 @@ export function Views({ content: views }: { content: ViewsContent }) {
   const position = useTransform(scrollYProgress, [0.1, 0.9], [0.5, views.images.length - 1.5]);
 
   return (
-    <section className="relative z-10 overflow-hidden bg-white pt-[120px] pb-[120px] md:pt-[240px] md:pb-[200px]">
+    <section className="relative z-10 overflow-hidden bg-white pt-[60px] pb-[60px] md:pt-[240px] md:pb-[200px]">
       <div className="grid grid-cols-1 px-5 md:grid-cols-12 md:gap-5">
         <p className="text-h2 md:col-span-6 md:col-start-7">{views.lead}</p>
       </div>
 
-      <div ref={rowRef} className="relative mt-[80px] h-[60vw] [perspective:1400px] md:mt-[120px] md:h-[34vw]">
+      <div ref={rowRef} className="relative mt-8 h-[60vw] [perspective:1400px] md:mt-[120px] md:h-[34vw]">
         {views.images.map((image, index) => (
           <ViewCard key={image.src} index={index} position={position} src={image.src} alt={image.alt} />
         ))}
       </div>
 
-      <p className="text-body mx-auto mt-[80px] max-w-[453px] px-5 text-center text-grey md:mt-[120px]">{views.text}</p>
+      <p className="text-copy mt-8 px-5 text-[#555] md:mx-auto md:mt-[120px] md:max-w-[453px] md:text-center md:text-grey">{views.text}</p>
     </section>
   );
 }

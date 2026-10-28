@@ -84,12 +84,12 @@ export function KeyFacts({ project }: Props) {
 export function Overview({ project }: Props) {
   const { tower } = project.sections;
   return (
-    <section className="bg-white pt-[120px] md:pt-[200px]">
+    <section className="bg-white pt-[60px] md:pt-[200px]">
       <SplitHeading parts={tower.heading} />
 
       <div className="mt-10 grid grid-cols-1 gap-5 px-5 md:mt-[80px] md:grid-cols-12">
         <p className="text-h2 md:col-span-6">{tower.lead}</p>
-        <p className="text-body text-grey md:col-span-4 md:col-start-9">{tower.intro}</p>
+        <p className="text-copy text-[#555] md:text-grey md:col-span-4 md:col-start-9">{tower.intro}</p>
       </div>
 
       <div className="mt-[60px] grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
@@ -109,7 +109,7 @@ export function Overview({ project }: Props) {
 export function Highlights({ project }: Props) {
   const { format } = project.sections;
   return (
-    <section className="bg-white pt-[120px] md:pt-[200px]">
+    <section className="bg-white pt-[60px] md:pt-[200px]">
       <h2 className="text-h1 px-5 md:max-w-[60vw]">{format.heading.join(" ")}</h2>
 
       <div className="relative mt-10 aspect-[4/3] w-full md:mt-[60px] md:aspect-[1440/720]">
@@ -134,7 +134,7 @@ export function Highlights({ project }: Props) {
 export function Amenities({ project }: Props) {
   const { crown, people } = project.sections;
   return (
-    <section data-theme="dark" className="mt-[120px] bg-black pt-5 pb-[120px] text-white md:mt-[200px] md:pb-[200px]">
+    <section data-theme="dark" className="mt-[60px] bg-black pt-5 pb-[60px] text-white md:mt-[200px] md:pb-[200px]">
       <p className="text-small px-5 text-grey">{people.label}</p>
       <SplitHeading parts={people.heading} className="mt-3" />
 
@@ -161,7 +161,7 @@ export function Amenities({ project }: Props) {
 export function ProjectLocation({ project }: Props) {
   const { location } = project.sections;
   return (
-    <section id="location" data-theme="dark" className="bg-black pt-5 pb-[120px] text-white md:pb-[200px]">
+    <section id="location" data-theme="dark" className="bg-black pt-5 pb-[60px] text-white md:pb-[200px]">
       <SplitHeading parts={location.heading} />
 
       <div className="mt-[60px] grid grid-cols-1 gap-10 px-5 md:mt-[120px] md:grid-cols-12 md:gap-5">
@@ -177,7 +177,7 @@ export function ProjectLocation({ project }: Props) {
               </li>
             ))}
           </ul>
-          <p className="text-body mt-5 text-grey">{location.mapText}</p>
+          <p className="text-copy mt-5 text-white/70 md:text-grey">{location.mapText}</p>
         </div>
 
         <div className="relative aspect-[4/3] overflow-hidden rounded-[5px] md:col-span-7 md:aspect-auto md:min-h-[560px]">
@@ -202,7 +202,7 @@ export function ProjectLocation({ project }: Props) {
 /* Headline and phone on the left, the enquiry form (this project already picked) on the right. */
 export function Enquire({ project }: Props) {
   return (
-    <section id="enquire" className="bg-white pt-[120px] pb-[160px] md:pt-[200px]">
+    <section id="enquire" className="bg-white pt-[60px] pb-[80px] md:pt-[200px]">
       <div className="grid grid-cols-1 gap-10 px-5 md:grid-cols-12 md:gap-5">
         <div className="flex flex-col gap-5 md:col-span-5">
           <h2 className="text-h1">
@@ -210,7 +210,7 @@ export function Enquire({ project }: Props) {
             <br />
             {project.name}
           </h2>
-          <p className="text-body text-grey">{contact.intro}</p>
+          <p className="text-copy text-[#555] md:text-grey">{contact.intro}</p>
           <div className="flex flex-col gap-1 md:mt-auto">
             {office.phones.map((phone) => (
               <a key={phone.href} href={phone.href} className="text-h2 hover:text-grey">
@@ -242,7 +242,7 @@ export function Enquire({ project }: Props) {
 export function MoreProjects({ project }: Props) {
   const others = fullProjects.filter((other) => other.slug !== project.slug);
   return (
-    <section className="border-t border-black/10 bg-white px-5 pt-5 pb-[160px]">
+    <section className="border-t border-black/10 bg-white px-5 pt-5 pb-[80px]">
       <h2 className="text-small text-grey">Other landmarks</h2>
       <ul className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
         {others.map((other) => (

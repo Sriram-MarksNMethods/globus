@@ -32,12 +32,18 @@ encode() {
 }
 
 encode hero-towers "[0:v]fps=24,hue=s=0,scale=1920:1012" -i "$HERO"
-encode hero-towers-portrait "[0:v]fps=24,hue=s=0,crop=1000:2160:1000:0,scale=720:1556" -i "$HERO"
+# Upright cut: the two towers with most of the empty middle taken out (a plain centre strip is just
+# that empty middle). The towers never enter x 1464-2552 of the original during the loop, so both
+# cuts (x 1600 and x 2420) are always in empty background and the join can't be seen.
+# 3:4, so iPads show all of it; phones show its centre, which still has a tower on each side.
+encode hero-towers-portrait "[0:v]fps=24,hue=s=0,split[a][b];[a]crop=810:2160:790:0[l];[b]crop=810:2160:2420:0[r];[l][r]hstack,scale=1080:1440" -i "$HERO"
 
 duration=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$TUNNEL")
 encode projects-tunnel "[0:v]fps=24,$GRADE" -i "$TUNNEL" -loop 1 -t "$duration" -i mask-1920x1080.png
-encode projects-tunnel-portrait "[0:v]fps=24,crop=500:1080,scale=600:1296,$GRADE" -i "$TUNNEL" -loop 1 -t "$duration" -i mask-600x1296.png
+# Upright cuts: the ring turned a quarter (a centre strip of the wide ring is just its empty opening),
+# so on a phone the fins fill the screen with the opening in the middle, behind the title.
+encode projects-tunnel-portrait "[0:v]fps=24,transpose=1,scale=720:1280,$GRADE" -i "$TUNNEL" -loop 1 -t "$duration" -i mask-720x1280.png
 # menu: the same tunnel in its original silver (no grade), behind the menu panel
 encode menu-tunnel "[0:v]fps=24" -i "$TUNNEL"
-encode menu-tunnel-portrait "[0:v]fps=24,crop=500:1080,scale=600:1296" -i "$TUNNEL"
+encode menu-tunnel-portrait "[0:v]fps=24,transpose=1,scale=720:1280" -i "$TUNNEL"
 echo all done

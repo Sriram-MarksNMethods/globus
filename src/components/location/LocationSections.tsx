@@ -19,7 +19,7 @@ export function LocationHero() {
       <div className="absolute inset-x-5 top-[110px] flex flex-col gap-5 md:top-[160px] md:flex-row md:items-start md:justify-between">
         <h1 className="text-h1 flex flex-col md:contents">
           <span>{locationPage.heading[0]}</span>
-          <span className="self-end md:order-last md:self-auto">{locationPage.heading[1]}</span>
+          <span className="md:order-last">{locationPage.heading[1]}</span>
         </h1>
         <p className="text-body shrink-0 md:mt-[10px]">
           {locationPage.label[0]}
@@ -34,7 +34,7 @@ export function LocationHero() {
 /* ------------------------------------------------------------------ Intro */
 export function LocationIntro() {
   return (
-    <section className="bg-white py-[120px] md:py-[240px]">
+    <section className="bg-white py-[60px] md:py-[240px]">
       <div className="grid grid-cols-1 px-5 md:grid-cols-12 md:gap-5">
         <p className="text-h2 md:col-span-6 md:col-start-7">{locationPage.intro}</p>
       </div>
@@ -83,13 +83,13 @@ export function TravelTimes() {
   const mapY = clamp(focusY - pinY * mapHeight, frame.height - mapHeight);
 
   return (
-    <section data-theme="dark" className="relative bg-black pt-5 pb-[120px] text-white">
+    <section data-theme="dark" className="relative bg-black pt-5 pb-[60px] text-white">
       <h2 className="text-h1 flex flex-col px-5 md:flex-row md:justify-between">
         <span>{locationPage.timesHeading[0]}</span>
-        <span className="self-end md:self-auto">{locationPage.timesHeading[1]}</span>
+        <span>{locationPage.timesHeading[1]}</span>
       </h2>
 
-      <div className="relative mt-[80px] md:mt-[120px]">
+      <div className="relative mt-10 md:mt-[120px]">
         {/* Map window */}
         <div ref={frameRef} className="relative aspect-[4/5] overflow-hidden md:aspect-auto md:h-svh">
           <motion.div
