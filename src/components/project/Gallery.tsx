@@ -64,7 +64,7 @@ function Slide({ image }: { image: Picture }) {
   return (
     <>
       <div className="relative aspect-[670/450] overflow-hidden rounded-[5px]">
-        <Image src={image.src} alt={image.alt} fill sizes="(min-width: 768px) 44vw, 80vw" className="object-cover" />
+        <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 44vw, 80vw" className="object-cover" />
       </div>
       <p className="text-small mt-3 text-grey">{image.alt}</p>
     </>

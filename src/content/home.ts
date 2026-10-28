@@ -92,6 +92,19 @@ export const choose: ChooseContent = {
 };
 
 export const footer = {
+  // Copy below is word for word from the live site's footer.
+  cta: {
+    heading: "Let's build the future, together.",
+    text: "Connect with us to discover how we can bring your vision to life.",
+    button: { label: "Enquire now", href: "/contact" },
+  },
+  columns: { links: "Quick Links", projects: "Our Projects", contact: "Contact Us" },
+  socials: [
+    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61574410631523" },
+    { label: "X", href: "https://x.com/globusdevlopers" },
+    { label: "Instagram", href: "https://www.instagram.com/globusdevelopers/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/globus-developers/" },
+  ],
   copyright: "© 2026 Globus Developers",
   credit: { label: "Website by marks+methods", href: "https://www.marksandmethods.com" },
   disclaimer:

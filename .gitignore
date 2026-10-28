@@ -47,3 +47,4 @@ next-env.d.ts
 # local audit + render logs
 .roast/
 tools/**/*.log
+tools/location-map/osm.json

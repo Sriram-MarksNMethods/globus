@@ -8,16 +8,17 @@ import { FinRibbon } from "@/components/brand/FinRibbon";
 import { BlurReveal } from "@/components/ui/BlurReveal";
 
 /* ------------------------------------------------------------------ Hero */
-/* Headline split to both edges over the fin sculpture, small label in between. */
+/* Headline split to both edges over the fin sculpture, small label in between.
+   Phones and tablets: headline near the top and label near the bottom, so neither sits on the fins' busy middle. */
 export function AboutHero() {
   return (
     <section className="relative h-svh overflow-hidden bg-white">
       <FinRibbon className="absolute top-1/2 left-1/2 h-[115vh] w-[115vh] -translate-x-1/2 -translate-y-1/2" />
-      <h1 className="text-h1 absolute inset-x-5 top-1/2 flex -translate-y-1/2 flex-col md:flex-row md:justify-between">
+      <h1 className="text-h1 absolute inset-x-5 top-[100px] flex flex-col md:top-1/2 md:-translate-y-1/2 md:flex-row md:justify-between">
         <span>{about.heading[0]}</span>
         <span className="self-end md:self-auto">{about.heading[1]}</span>
       </h1>
-      <p className="text-body absolute top-[calc(50%+90px)] right-5 left-5 text-center text-grey md:top-[calc(50%-60px)] md:left-[33vw] md:right-auto md:w-[200px]">
+      <p className="text-body absolute right-5 bottom-10 left-5 text-center text-grey md:top-[calc(50%-60px)] md:bottom-auto md:left-[33vw] md:right-auto md:w-[200px]">
         {about.label.map((line) => (
           <span key={line} className="block">
             {line}
@@ -30,7 +31,7 @@ export function AboutHero() {
 
 /* ------------------------------------------------------------------ Philosophy */
 /*
-  Pinned full-screen photo with a frosted card on the right.
+  Pinned full-screen photo with a frosted card on the right (along the bottom on phones and tablets).
   Scrolling steps through Vision → Precision → Legacy: the photo cross-fades,
   the card's bars fill and its text blurs in.
 */
@@ -58,23 +59,23 @@ export function Philosophy() {
         ))}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-        <p className="text-h2 absolute bottom-5 left-5 max-w-[453px]">
+        <p className="text-h2 absolute top-[100px] left-5 max-w-[453px] pr-5 md:top-auto md:bottom-5 md:pr-0">
           {about.philosophy.caption[0]}
           <br />
           {about.philosophy.caption[1]}
         </p>
 
-        <div className="absolute top-[103px] right-5 bottom-5 hidden w-[453px] flex-col rounded-[5px] bg-[rgba(80,80,80,0.85)] p-5 md:flex">
+        <div className="absolute inset-x-5 bottom-5 flex flex-col rounded-[5px] bg-[rgba(80,80,80,0.85)] p-5 md:top-[103px] md:right-5 md:left-auto md:w-[453px]">
           <div className="flex gap-5">
             {pillars.map((pillar, index) => (
               <Bar key={pillar.name} index={index} count={pillars.length} progress={scrollYProgress} />
             ))}
           </div>
-          <div className="mt-[35px] flex items-start justify-between">
+          <div className="mt-5 flex items-start justify-between md:mt-[35px]">
             <p className="text-h1">{active + 1}</p>
             <p className="text-small text-white/60">/ {pillars.length}</p>
           </div>
-          <div className="relative mt-auto mb-auto min-h-[110px]">
+          <div className="relative mt-8 min-h-[130px] md:mt-auto md:mb-auto md:min-h-[110px]">
             {pillars.map((pillar, index) => (
               <div key={pillar.name} className="absolute inset-x-0 top-0">
                 <BlurReveal text={pillar.name} show={index === active} className="text-h2" />
@@ -126,7 +127,7 @@ export function Numbers() {
     <section className="bg-white pt-[120px] md:pt-[240px]">
       <ul className="grid grid-cols-1 gap-5 px-5 md:grid-cols-3">
         {about.numbers.map((number) => (
-          <li key={number.value} className="flex aspect-[453/414] flex-col justify-between rounded-[5px] bg-soft p-5">
+          <li key={number.value} className="flex min-h-[190px] flex-col justify-between rounded-[5px] bg-soft p-5 md:aspect-[453/414] md:min-h-0">
             <div>
               <p className="text-h1">{number.value}</p>
               <p className="text-small mt-4 text-grey">{number.note}</p>

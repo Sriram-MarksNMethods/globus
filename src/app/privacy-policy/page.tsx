@@ -7,62 +7,65 @@ export const metadata: Metadata = {
   description: "How Globus Developers collects, uses and protects the information you share on this website.",
 };
 
-/* Privacy policy: title, a sticky list of contents on the left, the policy text on the right. */
+/*
+  Privacy policy, laid out like aircenter.space/privacy-policy:
+  centred title, then one narrow centred column of plain text.
+  Section numbers (1, 1.1, 1.2 …) hang in the left margin on desktop.
+*/
+const text = "text-[15px] leading-[21px] md:text-[16px] md:leading-[22px]";
+// Hanging number: inline on phones, out in the margin on desktop.
+const number = "mr-3 text-grey md:absolute md:right-full md:mr-0 md:w-[70px] md:pr-5 md:text-right";
+
 export default function PrivacyPage() {
   return (
     <main className="bg-white">
-      <article className="pt-[110px] pb-[160px] md:pt-[160px]">
-        <h1 className="text-h1 px-5">Privacy policy</h1>
-        <p className="text-small mt-5 px-5 text-grey">Last updated: {privacy.lastUpdated}</p>
+      <article className="pt-[140px] pb-[160px] md:pt-[240px]">
+        <h1 className="text-h1 mx-auto max-w-[730px] px-5 text-center">Privacy policy</h1>
+        <p className="text-small mt-5 text-center text-grey">Last updated: {privacy.lastUpdated}</p>
 
-        <div className="mt-[80px] grid grid-cols-1 gap-5 px-5 md:grid-cols-12">
-          <nav aria-label="Contents" className="hidden md:col-span-3 md:block">
-            <ol className="sticky top-[100px] flex flex-col gap-2">
-              {privacy.sections.map((section, index) => (
-                <li key={section.heading}>
-                  <a href={`#section-${index + 1}`} className="text-small text-grey hover:text-black">
-                    {String(index + 1).padStart(2, "0")} {section.heading}
-                  </a>
-                </li>
+        <div className={`${text} mx-auto mt-[100px] max-w-[730px] px-5 md:mt-[160px]`}>
+          <p>{privacy.intro}</p>
+
+          {privacy.sections.map((section, index) => (
+            <section key={section.heading} className="relative mt-[56px] md:mt-[68px]">
+              <h2 className="relative font-medium">
+                <span className={number}>{index + 1}</span>
+                {section.heading}
+              </h2>
+
+              {section.paragraphs.map((paragraph, line) => (
+                <p key={paragraph.slice(0, 24)} className="relative mt-[28px]">
+                  <span className={number}>
+                    {index + 1}.{line + 1}
+                  </span>
+                  {paragraph}
+                </p>
               ))}
-            </ol>
-          </nav>
 
-          <div className="flex flex-col gap-10 md:col-span-7 md:col-start-5">
-            <p className="text-body text-grey">{privacy.intro}</p>
+              {section.list && (
+                <ul className="mt-[28px] flex list-disc flex-col gap-[10px] pl-5">
+                  {section.list.map((item) => (
+                    <li key={item.text.slice(0, 24)}>
+                      {item.lead && <span className="font-medium">{item.lead} </span>}
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-            {privacy.sections.map((section, index) => (
-              <section key={section.heading} id={`section-${index + 1}`} className="scroll-mt-[100px]">
-                <h2 className="text-h2">
-                  {index + 1}. {section.heading}
-                </h2>
-                {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 24)} className="text-body mt-4 text-grey">
-                    {paragraph}
-                  </p>
-                ))}
-                {section.list && (
-                  <ul className="text-body mt-4 flex list-disc flex-col gap-2 pl-5 text-grey">
-                    {section.list.map((item) => (
-                      <li key={item.text.slice(0, 24)}>
-                        {item.lead && <strong className="font-medium text-black">{item.lead} </strong>}
-                        {item.text}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {section.contactBlock && (
-                  <p className="text-body mt-4">
-                    Globus Developers
-                    <br />
-                    {office.address}
-                    <br />
-                    <a href={`mailto:${office.email}`} className="hover:text-grey">{office.email}</a>
-                  </p>
-                )}
-              </section>
-            ))}
-          </div>
+              {section.contactBlock && (
+                <p className="mt-[28px]">
+                  Globus Developers
+                  <br />
+                  {office.address}
+                  <br />
+                  <a href={`mailto:${office.email}`} className="underline hover:text-grey">
+                    {office.email}
+                  </a>
+                </p>
+              )}
+            </section>
+          ))}
         </div>
       </article>
       <Footer breadcrumb="Privacy policy" />

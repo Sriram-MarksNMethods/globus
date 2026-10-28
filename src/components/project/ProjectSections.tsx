@@ -94,10 +94,10 @@ export function Overview({ project }: Props) {
 
       <div className="mt-[60px] grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
         <div className="relative aspect-[4/3] overflow-hidden rounded-[5px] md:col-span-7">
-          <Image src={tower.images[0].src} alt={tower.images[0].alt} fill sizes="(min-width: 768px) 58vw, 100vw" className="object-cover" />
+          <Image src={tower.images[0].src} alt={tower.images[0].alt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
         </div>
         <div className="relative aspect-[4/5] overflow-hidden rounded-[5px] md:col-span-5 md:mt-[18vw]">
-          <Image src={tower.images[1].src} alt={tower.images[1].alt} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-cover" />
+          <Image src={tower.images[1].src} alt={tower.images[1].alt} fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
         </div>
       </div>
     </section>
@@ -140,12 +140,12 @@ export function Amenities({ project }: Props) {
 
       <div className="mt-[60px] grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
         <div className="relative aspect-[4/3] overflow-hidden rounded-[5px] md:col-span-8">
-          <Image src={crown.background.src} alt={crown.background.alt} fill sizes="(min-width: 768px) 66vw, 100vw" className="object-cover" />
+          <Image src={crown.background.src} alt={crown.background.alt} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
         </div>
         <div className="flex flex-col gap-5 md:col-span-4">
           <h3 className="text-h2">{crown.title}</h3>
           <div className="relative aspect-square overflow-hidden rounded-[5px] md:mt-auto">
-            <Image src={crown.image.src} alt={crown.image.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+            <Image src={crown.image.src} alt={crown.image.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
           </div>
         </div>
         <div className="relative aspect-[16/9] overflow-hidden rounded-[5px] md:col-span-12 md:aspect-[1400/560]">
@@ -185,7 +185,7 @@ export function ProjectLocation({ project }: Props) {
             src={location.map.src}
             alt={location.map.alt}
             fill
-            sizes="(min-width: 768px) 58vw, 100vw"
+            sizes="(min-width: 1024px) 58vw, 100vw"
             className="object-cover opacity-60 [filter:grayscale(1)_invert(1)_contrast(1.4)_brightness(0.55)]"
           />
           <span className="text-h2 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[5px] border border-white px-3 py-1">
@@ -253,7 +253,7 @@ export function MoreProjects({ project }: Props) {
                   src={other.card.src}
                   alt={other.card.alt}
                   fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
+                  sizes="(min-width: 1024px) 33vw, 100vw"
                   className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,0.74,0.22,0.99)] group-hover:scale-[1.03]"
                 />
               </div>

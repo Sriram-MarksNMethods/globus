@@ -49,12 +49,13 @@ export const locationPage = {
   label: ["West", "Hyderabad"],
   intro: "Globus homes sit along the city’s western growth corridor, in Kondapur, Kokapet and Kollur, minutes from the Financial District, Gachibowli and the Outer Ring Road.", // DRAFT
   timesHeading: ["Travel", "times"],
-  // One entry per area; the map and tiles switch when an area is picked.
+  // One entry per area. Picking one moves the map to its projects (pins: slugs in src/content/locationMap.ts)
+  // and shows its travel times on the card.
   areas: [
     {
       name: "Kokapet",
       projects: "Neo · Treasor",
-      map: { src: "/neo/map-kokapet.webp", alt: "Street map of Kokapet" },
+      pins: ["neo", "treasor"],
       times: [
         { value: "5", unit: "min", place: "ORR exit, Kokapet" },
         { value: "10", unit: "min", place: "Financial District" },
@@ -65,7 +66,7 @@ export const locationPage = {
     {
       name: "Kondapur",
       projects: "Altus",
-      map: { src: "/projects/altus/map.webp", alt: "Street map of Kondapur" },
+      pins: ["altus"],
       times: [
         { value: "0.6", unit: "km", place: "CHIREC School" },
         { value: "4.7", unit: "km", place: "DLF Cybercity" },
@@ -76,7 +77,7 @@ export const locationPage = {
     {
       name: "Kollur",
       projects: "Floresta",
-      map: { src: "/projects/floresta/map.webp", alt: "Street map of Kollur" },
+      pins: ["floresta"],
       times: [
         { value: "03", unit: "min", place: "ORR Kolluru exit" },
         { value: "05", unit: "min", place: "Nagulapalli station" },

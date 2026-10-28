@@ -9,15 +9,13 @@ export const metadata: Metadata = {
   description: "Ongoing and upcoming homes by Globus Developers in Hyderabad: Neo, Altus, Treasor, Floresta, Westlyn and Tukkuguda.",
 };
 
-/* Projects page: tunnel hero with the title, then status tabs and project cards. */
+/* Projects page: tunnel hero with the title, then one large row per project. */
 export default function ProjectsPage() {
   return (
     <main className="bg-white">
       <ProjectsHero />
 
-      <div className="pt-10 pb-[160px]">
-        <ProjectsIndex projects={projects} />
-      </div>
+      <ProjectsIndex projects={projects} />
 
       <Footer />
     </main>

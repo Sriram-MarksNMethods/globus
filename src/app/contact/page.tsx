@@ -21,7 +21,7 @@ export default function ContactPage() {
 
         <div className="mt-10 grid grid-cols-1 gap-5 px-5 md:mt-[80px] md:grid-cols-12">
           {/* Office details */}
-          <div className="flex flex-col gap-8 md:col-span-5 lg:col-span-4">
+          <div className="flex flex-col gap-8 md:col-span-4">
             <p className="text-body text-grey">{contact.details}</p>
 
             <dl className="flex flex-col gap-6">
@@ -49,7 +49,7 @@ export default function ContactPage() {
           </div>
 
           {/* Enquiry form */}
-          <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:p-10 lg:col-span-7 lg:col-start-6">
+          <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:col-start-6 md:p-10">
             <h2 className="text-h2">Enquire now</h2>
             <p className="text-body mt-3 mb-8 text-grey">{contact.intro}</p>
             <LeadForm form="contact" submitLabel="Submit enquiry">

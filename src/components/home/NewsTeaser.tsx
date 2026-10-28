@@ -25,7 +25,7 @@ export function NewsTeaser() {
             className="grid grid-cols-1 gap-5 rounded-[5px] bg-soft p-[10px] transition-colors duration-500 hover:bg-chip md:grid-cols-12"
           >
             <div className="relative aspect-[433/240] overflow-hidden rounded-[5px] md:col-span-8">
-              <Image src={featured.cover.src} alt={featured.cover.alt} fill sizes="(min-width: 768px) 66vw, 100vw" className="object-cover" />
+              <Image src={featured.cover.src} alt={featured.cover.alt} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
             </div>
             <div className="flex flex-col pb-[10px] md:col-span-4 md:py-[10px] md:pr-[10px]">
               <p className="text-small text-grey">
@@ -41,7 +41,7 @@ export function NewsTeaser() {
             <li key={post.slug}>
               <Link href={`/news/${post.slug}`} className="group flex h-full flex-col rounded-[5px] bg-soft p-[10px] transition-colors duration-500 hover:bg-chip">
                 <div className="relative aspect-[433/240] overflow-hidden rounded-[5px]">
-                  <Image src={post.cover.src} alt={post.cover.alt} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+                  <Image src={post.cover.src} alt={post.cover.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
                 </div>
                 <p className="text-small mt-4 text-grey">
                   {post.category} · {post.date}

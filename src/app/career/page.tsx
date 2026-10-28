@@ -20,12 +20,12 @@ export default function CareerPage() {
         <p className="text-body mt-5 px-5 text-grey md:ml-[50%] md:max-w-[453px]">{career.intro}</p>
 
         <div className="mt-[80px] grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
-          <div className="md:col-span-5 lg:col-span-4">
+          <div className="md:col-span-4">
             <h2 className="text-h2">{career.poolTitle}</h2>
             <p className="text-body mt-4 text-grey">{career.pool}</p>
           </div>
 
-          <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:p-10 lg:col-span-7 lg:col-start-6">
+          <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:col-start-6 md:p-10">
             <h2 className="text-h2">{career.formTitle}</h2>
             <p className="text-body mt-3 mb-8 text-grey">{career.formNote}</p>
             <LeadForm form="career" submitLabel="Submit application">

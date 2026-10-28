@@ -26,10 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // suppressHydrationWarning on <html>: the script below may add data-intro before React loads.
     <html lang="en" className={onest.variable} suppressHydrationWarning>
       <head>
-        {/* If the intro played in the last 24 hours, mark it done before the page is drawn. */}
+        {/* The intro only plays on the homepage, and not if it played there in the last 24 hours.
+            Otherwise mark it done before the page is drawn. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=+localStorage.getItem("${INTRO_SEEN_KEY}");if(t&&Date.now()-t<${INTRO_REPLAY_AFTER_MS})document.documentElement.dataset.intro="done"}catch(e){}`,
+            __html: `var d=document.documentElement;if(location.pathname!=="/")d.dataset.intro="done";try{var t=+localStorage.getItem("${INTRO_SEEN_KEY}");if(t&&Date.now()-t<${INTRO_REPLAY_AFTER_MS})d.dataset.intro="done"}catch(e){}`,
           }}
         />
       </head>

@@ -27,7 +27,7 @@ export function PlanViewer({ content: homes }: { content: HomesContent }) {
               src={slide.image.src}
               alt={slide.image.alt}
               fill
-              sizes="(min-width: 768px) 66vw, 100vw"
+              sizes="(min-width: 1024px) 66vw, 100vw"
               className={`transition-opacity duration-500 ${slide.photo ? "object-cover" : "object-contain p-5"} ${
                 index === active ? "opacity-100" : "opacity-0"
               }`}

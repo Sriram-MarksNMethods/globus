@@ -51,7 +51,7 @@ export function ProjectStack() {
                     src={project.card.src}
                     alt={project.card.alt}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
                     className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,0.74,0.22,0.99)] group-hover:scale-[1.03]"
                   />
                 </div>

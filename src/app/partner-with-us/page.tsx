@@ -19,14 +19,14 @@ export default function PartnerPage() {
         </h1>
 
         <div className="mt-10 grid grid-cols-1 gap-5 px-5 md:mt-[80px] md:grid-cols-12">
-          <div className="flex flex-col gap-6 md:col-span-5 lg:col-span-4">
+          <div className="flex flex-col gap-6 md:col-span-4">
             <p className="text-h2">{partner.intro}</p>
             <a href={`mailto:${office.email}`} className="text-body text-grey hover:text-black">
               {office.email}
             </a>
           </div>
 
-          <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:p-10 lg:col-span-7 lg:col-start-6">
+          <div className="rounded-[5px] bg-soft p-5 md:col-span-7 md:col-start-6 md:p-10">
             <h2 className="text-h2">{partner.formTitle}</h2>
             <p className="text-body mt-3 mb-8 text-grey">{partner.formNote}</p>
             <LeadForm form="partner" submitLabel="Submit application">
