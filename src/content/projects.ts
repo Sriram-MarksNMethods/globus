@@ -9,7 +9,7 @@
 
 import * as neo from "./neo";
 import type {
-  CrownContent, FormatContent, HomesContent, IntroContent,
+  CrownContent, HomesContent, IntroContent, ProjectFormatContent,
   LocationContent, PeopleContent, TowerContent, ViewsContent,
 } from "./types";
 
@@ -33,7 +33,7 @@ export type FullProject = ProjectBase & {
   sections: {
     intro: IntroContent;
     tower: TowerContent;
-    format: FormatContent;
+    format: ProjectFormatContent;
     crown: CrownContent;
     location: LocationContent;
     people: PeopleContent;

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import Link from "next/link";
 import type { Project } from "@/content/projects";
 
@@ -36,7 +36,7 @@ export function ProjectsIndex({ projects }: { projects: Project[] }) {
                 className={`absolute inset-0 scale-[1.05] opacity-0 [clip-path:inset(100%_0_0)] transition-[opacity,transform,clip-path] duration-[400ms,4000ms,1000ms] ${REVEAL} group-hover:scale-100 group-hover:opacity-40 group-hover:[clip-path:inset(0)] group-focus-visible:scale-100 group-focus-visible:opacity-40 group-focus-visible:[clip-path:inset(0)] pointer-coarse:scale-100 pointer-coarse:opacity-40 pointer-coarse:[clip-path:inset(0)]`}
                 aria-hidden="true"
               >
-                <Image src={project.card.src} alt="" fill sizes="100vw" className="object-cover" />
+                <ParallaxImage src={project.card.src} alt="" sizes="100vw" className="object-cover" />
               </div>
 
               <div className="relative grid grid-cols-[34px_1fr] gap-x-5 gap-y-8 px-5 py-[40px] md:min-h-[300px] md:grid-cols-12 md:py-[56px]">

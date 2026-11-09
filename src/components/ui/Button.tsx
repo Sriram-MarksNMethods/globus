@@ -3,6 +3,7 @@ import Link from "next/link";
 /*
   The two button shapes used everywhere:
 
+  size "md"   → 40px tall, label left, plus icon right, both centred on one line (header)
   size "sm"   → 30px tall pill, label left, plus icon right (header, chips)
   size "tall" → 50px tall block, label top-left, plus icon bottom-right (in sections)
 
@@ -15,7 +16,7 @@ type Props = {
   href: string;
   label: string;
   variant?: "dark" | "light";
-  size?: "sm" | "tall";
+  size?: "sm" | "md" | "tall";
   onDark?: boolean; // the button sits on a black section
   className?: string;
 };
@@ -31,7 +32,9 @@ export function Button({ href, label, variant = "dark", size = "tall", onDark = 
   const shape =
     size === "sm"
       ? "h-[30px] flex-row items-center justify-between px-[10px]"
-      : "h-[50px] flex-col justify-between p-[10px]";
+      : size === "md"
+        ? "h-10 flex-row items-center justify-between px-[14px]"
+        : "h-[50px] flex-col justify-between p-[10px]";
 
   const isExternal = href.startsWith("http") || href.startsWith("tel:");
 

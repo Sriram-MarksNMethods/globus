@@ -4,7 +4,7 @@
   Lines marked DRAFT are written for this layout — confirm with the client.
 */
 
-import type { CrownContent, FormatContent, HomesContent, LocationContent, TowerContent } from "./types";
+import type { CrownContent, ProjectFormatContent, HomesContent, LocationContent, TowerContent } from "./types";
 
 export const mapsUrl = "https://maps.app.goo.gl/?q=NEO+by+Yula+Globus";
 
@@ -22,7 +22,7 @@ export const tower: TowerContent = {
   ],
 };
 
-export const format: FormatContent = {
+export const format: ProjectFormatContent = {
   heading: ["The new", "Kokapet", "landmark"], // DRAFT
   intro:
     "It features wide roads, underground cabling, and zoned development, planned as a whole before the first tower rose.",

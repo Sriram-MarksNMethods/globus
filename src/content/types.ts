@@ -7,7 +7,7 @@ export type Picture = { src: string; alt: string };
 export type Link = { label: string; href: string };
 
 export type IntroContent = {
-  title: string[]; // two short lines at the top
+  title?: string[]; // two short lines at the top (kept in project data; the homepage has none)
   heading: string[]; // big headline, split left / right
   label: string[]; // small grey lines under the headline
 };
@@ -26,8 +26,10 @@ export type FormatContent = {
   heading: string[]; // three parts
   intro: string;
   image: Picture; // grows to full width
-  slides: string[]; // two short facts beside the counter
 };
+
+// Project pages add two short facts under the photo.
+export type ProjectFormatContent = FormatContent & { slides: string[] };
 
 export type CrownContent = {
   background: Picture;

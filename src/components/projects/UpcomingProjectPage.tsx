@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import type { UpcomingProject } from "@/content/projects";
 import { Button } from "@/components/ui/Button";
 import { SplitHeading } from "@/components/ui/SplitHeading";
@@ -11,7 +11,7 @@ export function UpcomingProjectPage({ project }: { project: UpcomingProject }) {
   return (
     <>
       <section data-theme="dark" className="relative h-svh overflow-hidden bg-black text-white">
-        <Image src={project.hero.src} alt={project.hero.alt} fill priority sizes="100vw" className="object-cover" />
+        <ParallaxImage src={project.hero.src} alt={project.hero.alt} priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute inset-x-5 bottom-5 flex flex-col gap-3 md:flex-row md:items-end">
           <p className="text-small md:w-[calc(2*(100vw-260px)/12+40px)] md:shrink-0">

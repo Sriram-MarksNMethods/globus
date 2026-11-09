@@ -2,25 +2,21 @@
 
 import Link from "next/link";
 import { nav } from "@/content/home";
-import { LoopVideo } from "@/components/ui/LoopVideo";
 import { PlusIcon } from "@/components/ui/Button";
 
 /*
-  Full-screen menu: the silver tunnel film fills the screen, with a centred grey panel on top.
+  Full-screen menu: a plain light screen with a centred grey panel on top.
   Left: main links (large) and secondary links (small, at the bottom).
   Right: two tiles with a plus button each (tablets and desktops; phones show the links only).
 */
 export function Menu({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <div
-      className={`fixed inset-0 z-30 bg-white transition-opacity duration-500 ${
+      className={`fixed inset-0 z-30 bg-[#e2e2e2] transition-opacity duration-500 ${
         open ? "opacity-100" : "pointer-events-none opacity-0"
       }`}
       aria-hidden={!open}
     >
-      {/* Silver tunnel film behind the panel, only loaded and running while the menu is open */}
-      {open && <LoopVideo name="/brand/menu-tunnel" eager className="absolute inset-0 size-full" />}
-
       <div className="absolute inset-x-5 top-[100px] bottom-5 flex md:inset-x-auto md:top-[141px] md:bottom-auto md:left-1/2 md:h-[640px] md:w-[690px] md:-translate-x-1/2 tablet:inset-x-auto tablet:top-[141px] tablet:bottom-auto tablet:left-1/2 tablet:h-[640px] tablet:w-[690px] tablet:-translate-x-1/2">
         {/* Left column (scrolls on its own if the screen is too short, e.g. a phone held sideways) */}
         <div data-lenis-prevent className="flex flex-1 flex-col justify-between gap-5 overflow-y-auto overscroll-contain rounded-l-[5px] bg-soft p-5">

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import { Header } from "@/components/layout/Header";
-import { Preloader } from "@/components/layout/Preloader";
-import { INTRO_REPLAY_AFTER_MS, INTRO_SEEN_KEY } from "@/components/layout/introSeen";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { site } from "@/content/home";
 import "./globals.css";
@@ -26,11 +24,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // suppressHydrationWarning on <html>: the script below may add data-intro before React loads.
     <html lang="en" className={onest.variable} suppressHydrationWarning>
       <head>
-        {/* The intro only plays on the homepage, and not if it played there in the last 24 hours.
-            Otherwise mark it done before the page is drawn. */}
+        {/* Only the homepage opening (Opening.tsx) flies the logo into the header; every other page
+            shows the header logo straight away, marked before the page is drawn. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `var d=document.documentElement;if(location.pathname!=="/")d.dataset.intro="done";try{var t=+localStorage.getItem("${INTRO_SEEN_KEY}");if(t&&Date.now()-t<${INTRO_REPLAY_AFTER_MS})d.dataset.intro="done"}catch(e){}`,
+            __html: `if(location.pathname!=="/")document.documentElement.dataset.intro="done";`,
           }}
         />
       </head>
@@ -38,7 +36,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           before React loads; this ignores those, and only on this one tag. */}
       <body id="top" suppressHydrationWarning>
         <SmoothScroll>
-          <Preloader />
           <Header />
           {children}
         </SmoothScroll>

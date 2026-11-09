@@ -76,8 +76,10 @@ export function Footer({ breadcrumb }: { breadcrumb?: string }) {
 
       {/* 3. Logo row + disclaimer */}
       <div className="mt-[48px] flex flex-col gap-3 md:mt-[72px] md:flex-row md:items-end md:justify-between">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/globus-logo-light.svg" alt="Globus Developers" className="mb-3 h-[70px] w-auto self-start md:mb-0 md:h-[110px]" />
+        <Link href="/" aria-label="Globus Developers, home" className="mb-3 self-start md:mb-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/globus-logo-light.svg" alt="Globus Developers" className="h-[70px] w-auto md:h-[110px]" />
+        </Link>
         <p className="text-small text-grey md:mb-[12px]">{footer.copyright}</p>
         <Link href="/privacy-policy" className="text-small text-grey hover:text-white md:mb-[12px]">
           Privacy policy

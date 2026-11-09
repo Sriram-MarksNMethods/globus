@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { useRef, useState } from "react";
 import { motion, MotionValue, useMotionValueEvent, useScroll, useTransform } from "motion/react";
 import { about } from "@/content/pages";
@@ -54,7 +54,7 @@ export function Philosophy() {
             animate={{ opacity: index === active ? 1 : 0 }}
             transition={{ duration: 0.9, ease: "easeInOut" }}
           >
-            <Image src={pillar.image.src} alt={pillar.image.alt} fill sizes="100vw" className="object-cover" />
+            <ParallaxImage src={pillar.image.src} alt={pillar.image.alt} sizes="100vw" className="object-cover" />
           </motion.div>
         ))}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
@@ -106,7 +106,7 @@ export function Story() {
       <div className="grid grid-cols-1 gap-5 px-5 md:grid-cols-12">
         <p className="text-h2 md:col-span-6 md:col-start-7">{about.story.lead}</p>
         <div className="relative aspect-[927/618] overflow-hidden rounded-[5px] md:col-span-8">
-          <Image src={about.story.image.src} alt={about.story.image.alt} fill sizes="66vw" className="object-cover" />
+          <ParallaxImage src={about.story.image.src} alt={about.story.image.alt} sizes="66vw" className="object-cover" />
         </div>
         <div className="flex flex-col gap-4 md:col-span-4 md:justify-end">
           {about.story.paragraphs.map((paragraph) => (

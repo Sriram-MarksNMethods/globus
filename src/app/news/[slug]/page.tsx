@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { news } from "@/content/pages";
@@ -38,7 +38,7 @@ export default async function NewsPostPage({ params }: Props) {
         </div>
 
         <div className="relative mx-5 mt-10 aspect-[1400/700] overflow-hidden rounded-[5px]">
-          <Image src={post.cover.src} alt={post.cover.alt} fill priority sizes="100vw" className="object-cover" />
+          <ParallaxImage src={post.cover.src} alt={post.cover.alt} priority sizes="100vw" className="object-cover" />
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">

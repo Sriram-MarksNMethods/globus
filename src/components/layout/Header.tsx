@@ -94,7 +94,7 @@ export function Header() {
             type="button"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className={`flex h-[30px] w-[60px] items-center justify-center rounded-[5px] transition-colors duration-[600ms] ${
+            className={`flex h-10 w-[64px] items-center justify-center rounded-[5px] transition-colors duration-[600ms] ${
               menuOpen ? "bg-[#333] text-white" : dark ? "bg-white text-black" : "bg-black text-white hover:bg-[#333]"
             }`}
           >
@@ -103,26 +103,20 @@ export function Header() {
         </div>
 
         {/* Globus logo: dark on light sections, white on dark ones */}
-        <Link href="/" aria-label="Globus Developers, home" className="pointer-events-auto absolute top-[15px] left-[100px] md:left-[calc(2*20px+2*(100vw-220px)/12)]">
+        <Link href="/" aria-label="Globus Developers, home" className="pointer-events-auto absolute top-[14px] left-[108px] md:top-[4px] md:left-[calc(2*20px+2*(100vw-220px)/12)]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={dark ? "/brand/globus-logo-light.svg" : "/brand/globus-logo-dark.svg"}
             alt="Globus Developers"
-            width={118}
-            height={40}
+            width={212}
+            height={72}
             data-header-logo
-            // Hidden until the landing intro has flown its logo into this spot.
-            className="h-10 w-auto opacity-0 [html[data-intro=done]_&]:opacity-100"
+            // On the homepage, hidden until the opening (Opening.tsx) has flown its logo into this spot.
+            className="h-[52px] w-auto opacity-0 md:h-[72px] [html[data-intro=done]_&]:opacity-100"
           />
         </Link>
 
-        <Button
-          href="/contact"
-          label={nav.cta}
-          size="sm"
-          onDark={dark}
-          className="pointer-events-auto hidden w-[217px] md:flex"
-        />
+        <Button href="/contact" label={nav.cta} size="md" onDark={dark} className="pointer-events-auto hidden w-[190px] md:flex" />
       </header>
 
       <Menu open={menuOpen} onClose={() => setMenuOpen(false)} />
@@ -132,8 +126,8 @@ export function Header() {
 
 function MenuIcon() {
   return (
-    <svg width="40" height="6" viewBox="0 0 40 6" aria-hidden="true">
-      <path d="M0 .5h40M10 5.5h20" stroke="currentColor" strokeWidth="1" />
+    <svg width="34" height="8" viewBox="0 0 34 8" aria-hidden="true">
+      <path d="M0 1h34M8.5 7h17" stroke="currentColor" strokeWidth="1.2" />
     </svg>
   );
 }

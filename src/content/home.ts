@@ -39,26 +39,24 @@ export const nav = {
 };
 
 export const intro: IntroContent = {
-  title: ["Globus Developers", "Hyderabad"], // DRAFT
   heading: ["Crafting skylines", "building futures"], // Globus tagline from the live site
   label: ["Villas, residences", "& townships", "Hyderabad"], // DRAFT
 };
 
-// "A legacy of landmarks": the photo that grows to full width, then two facts beside the counter.
+// "A legacy of landmarks": the photo that grows to full width.
 export const format: FormatContent = {
   heading: ["A legacy", "of", "landmarks"],
   intro: "Our portfolio is a testament to our commitment to quality, innovation, and timeless design.",
   image: { src: "/neo/aerial-lake-4k.webp", alt: "Aerial view of Neo and the lake" },
-  slides: [
-    "Four ongoing landmarks across Kokapet, Kondapur and Kollur: Altus, Treasor, Neo and Floresta.", // DRAFT
-    "Two upcoming addresses, Westlyn and Tukkuguda, are already taking shape.", // DRAFT
-  ],
 };
 
-// The ongoing projects, one full screen each (cards come from projects.ts).
+// Every project, one full screen each (cards come from projects.ts).
 export const showcase = {
+  heading: "Our projects",
   button: "View project", // DRAFT
-  upcoming: "Upcoming",
+  corner: "Globus Developers",
+  hintDesktop: "Drag or hover a project", // DRAFT
+  hintPhone: "Swipe for more", // DRAFT
 };
 
 export const people: PeopleContent = {

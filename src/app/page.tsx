@@ -1,4 +1,5 @@
 import { choose, format, intro, people, views } from "@/content/home";
+import { Opening } from "@/components/home/Opening";
 import { Intro } from "@/components/home/Intro";
 import { Format } from "@/components/home/Format";
 import { ProjectStack } from "@/components/home/ProjectStack";
@@ -12,6 +13,7 @@ import { Footer } from "@/components/layout/Footer";
 export default function HomePage() {
   return (
     <main>
+      <Opening />
       <Intro content={intro} />
       <Format content={format} />
       <ProjectStack />

@@ -12,7 +12,7 @@
   --font-sans: var(--font-onest), "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --color-ink: #000000;
-  --color-grey: #8d8d8d; /* small uppercase body text */
+  --color-grey: #8d8d8d; /* small body text */
   --color-soft: #f2f2f2; /* cards, menu panel */
   --color-chip: #e9e9e9; /* secondary buttons */
   --color-plum: #351530; /* Globus logo */
@@ -36,7 +36,6 @@
   font-size: 42px;
   line-height: 45px;
   letter-spacing: -0.02em;
-  text-transform: uppercase;
   font-weight: 400;
   /* Tablets (portrait): still the stacked layout, but sized for the bigger screen. */
   @media (640px <= width < 1024px) {
@@ -58,7 +57,6 @@
   font-size: 21px;
   line-height: 24px;
   letter-spacing: -0.01em;
-  text-transform: uppercase;
   font-weight: 400;
   @media (640px <= width < 1024px) {
     font-size: 26px;
@@ -78,7 +76,6 @@
   font-size: 13px;
   line-height: 16px;
   font-weight: 500;
-  text-transform: uppercase;
   /* Tablets and up */
   @media (width >= 640px) {
     font-size: 14px;
@@ -90,7 +87,6 @@
   font-size: 10px;
   line-height: 13px;
   font-weight: 500;
-  text-transform: uppercase;
   letter-spacing: 0.01em;
   /* Tablets and up */
   @media (width >= 640px) {
@@ -101,9 +97,9 @@
 }
 
 /*
-  Longer paragraphs. Desktop: the same uppercase body style as text-body.
-  Phones and portrait tablets: sentence case and bigger, because a block of small
-  capitals is hard to read on a small screen.
+  Longer paragraphs. Desktop: the same body style as text-body.
+  Phones and portrait tablets: bigger and lighter, because a block of small
+  text is hard to read on a small screen.
 */
 @utility text-copy {
   font-size: 15px;
@@ -117,7 +113,6 @@
     font-size: 14px;
     line-height: 18px;
     font-weight: 500;
-    text-transform: uppercase;
   }
 }
 

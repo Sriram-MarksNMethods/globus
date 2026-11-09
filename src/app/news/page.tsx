@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import Link from "next/link";
 import { news } from "@/content/pages";
 import { PlusIcon } from "@/components/ui/Button";
@@ -25,7 +25,7 @@ export default function NewsPage() {
             <li key={post.slug}>
               <Link href={`/news/${post.slug}`} className="group flex h-full flex-col rounded-[5px] bg-soft p-[10px] transition-colors duration-500 hover:bg-chip">
                 <div className="relative aspect-[433/240] overflow-hidden rounded-[5px]">
-                  <Image src={post.cover.src} alt={post.cover.alt} fill sizes="33vw" className="object-cover" />
+                  <ParallaxImage src={post.cover.src} alt={post.cover.alt} sizes="33vw" className="object-cover" />
                 </div>
                 <p className="text-body mt-4 px-[10px]">{post.title}</p>
                 <div className="mt-auto flex items-end justify-between px-[10px] pt-[60px] pb-[6px]">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import Link from "next/link";
 import type { FullProject } from "@/content/projects";
 import { fullProjects } from "@/content/projects";
@@ -23,7 +24,7 @@ export function ProjectHero({ project }: Props) {
   const { intro, tower } = project.sections;
   return (
     <section data-theme="dark" className="relative h-svh min-h-[560px] overflow-hidden bg-black text-white">
-      <Image src={tower.image.src} alt={tower.image.alt} fill priority sizes="100vw" quality={90} className="object-cover" />
+      <ParallaxImage src={tower.image.src} alt={tower.image.alt} priority sizes="100vw" quality={90} className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
 
       <nav aria-label="Breadcrumb" className="text-small absolute top-[80px] left-5 flex gap-2 text-white/60">
@@ -39,7 +40,7 @@ export function ProjectHero({ project }: Props) {
           <p className="text-small text-white/60">
             {project.status} · {project.area}
           </p>
-          <h1 className="mt-3 text-[16vw] leading-[0.82] font-normal tracking-[-0.05em] uppercase md:text-[13vw]">{project.name}</h1>
+          <h1 className="mt-3 text-[16vw] leading-[0.82] font-normal tracking-[-0.05em] md:text-[13vw]">{project.name}</h1>
           <p className="text-h2 mt-5">
             {intro.heading[0]} {intro.heading[1]}
           </p>
@@ -94,10 +95,10 @@ export function Overview({ project }: Props) {
 
       <div className="mt-[60px] grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
         <div className="relative aspect-[4/3] overflow-hidden rounded-[5px] md:col-span-7">
-          <Image src={tower.images[0].src} alt={tower.images[0].alt} fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
+          <ParallaxImage src={tower.images[0].src} alt={tower.images[0].alt} sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
         </div>
         <div className="relative aspect-[4/5] overflow-hidden rounded-[5px] md:col-span-5 md:mt-[18vw]">
-          <Image src={tower.images[1].src} alt={tower.images[1].alt} fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
+          <ParallaxImage src={tower.images[1].src} alt={tower.images[1].alt} sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover" />
         </div>
       </div>
     </section>
@@ -113,7 +114,7 @@ export function Highlights({ project }: Props) {
       <h2 className="text-h1 px-5 md:max-w-[60vw]">{format.heading.join(" ")}</h2>
 
       <div className="relative mt-10 aspect-[4/3] w-full md:mt-[60px] md:aspect-[1440/720]">
-        <Image src={format.image.src} alt={format.image.alt} fill sizes="100vw" className="object-cover" />
+        <ParallaxImage src={format.image.src} alt={format.image.alt} sizes="100vw" className="object-cover" />
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-8 px-5 md:mt-[60px] md:grid-cols-12 md:gap-5">
@@ -140,16 +141,16 @@ export function Amenities({ project }: Props) {
 
       <div className="mt-[60px] grid grid-cols-1 gap-5 px-5 md:mt-[120px] md:grid-cols-12">
         <div className="relative aspect-[4/3] overflow-hidden rounded-[5px] md:col-span-8">
-          <Image src={crown.background.src} alt={crown.background.alt} fill sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
+          <ParallaxImage src={crown.background.src} alt={crown.background.alt} sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover" />
         </div>
         <div className="flex flex-col gap-5 md:col-span-4">
           <h3 className="text-h2">{crown.title}</h3>
           <div className="relative aspect-square overflow-hidden rounded-[5px] md:mt-auto">
-            <Image src={crown.image.src} alt={crown.image.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
+            <ParallaxImage src={crown.image.src} alt={crown.image.alt} sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
           </div>
         </div>
         <div className="relative aspect-[16/9] overflow-hidden rounded-[5px] md:col-span-12 md:aspect-[1400/560]">
-          <Image src={people.image.src} alt={people.image.alt} fill sizes="100vw" className="object-cover" />
+          <ParallaxImage src={people.image.src} alt={people.image.alt} sizes="100vw" className="object-cover" />
         </div>
       </div>
     </section>
@@ -249,10 +250,9 @@ export function MoreProjects({ project }: Props) {
           <li key={other.slug}>
             <Link href={`/projects/${other.slug}`} className="group block">
               <div className="relative aspect-[453/340] overflow-hidden rounded-[5px] bg-soft">
-                <Image
+                <ParallaxImage
                   src={other.card.src}
                   alt={other.card.alt}
-                  fill
                   sizes="(min-width: 1024px) 33vw, 100vw"
                   className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,0.74,0.22,0.99)] group-hover:scale-[1.03]"
                 />

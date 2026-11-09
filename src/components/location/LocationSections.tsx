@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ParallaxImage } from "@/components/ui/ParallaxImage";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
@@ -12,7 +12,7 @@ import { mapAreaLabels, mapAspect, mapPins } from "@/content/locationMap";
 export function LocationHero() {
   return (
     <section data-theme="dark" className="relative h-svh overflow-hidden bg-black text-white">
-      <Image src={locationPage.hero.src} alt={locationPage.hero.alt} fill priority sizes="100vw" className="object-cover" />
+      <ParallaxImage src={locationPage.hero.src} alt={locationPage.hero.alt} priority sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-transparent" />
       {/* Phones: headline, then the label under it. Desktop: one row, the label sits in the gap
           between the two halves of the headline, so a longer word can never run into it. */}
