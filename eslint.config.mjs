@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Offline render/encode scripts, not part of the site.
+    "tools/**",
   ]),
 ]);
 
